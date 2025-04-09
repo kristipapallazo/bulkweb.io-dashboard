@@ -1,0 +1,9 @@
+.mainHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  /* background-color: #282c34; */
+  /* color: white; */
+  box-shadow: 2px 2px 5px -2px var(--primary-color);
+}
