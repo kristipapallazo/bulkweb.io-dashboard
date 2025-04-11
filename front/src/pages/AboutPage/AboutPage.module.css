@@ -1,0 +1,43 @@
+.aboutPage {
+  position: relative;
+}
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.sectionTitle {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.paragraph {
+  font-size: 1.125rem;
+  color: #444;
+  margin-bottom: 1.25rem;
+  line-height: 1.7;
+}
+
+.list {
+  padding-left: 1.5rem;
+  color: #444;
+}
+
+.list li {
+  font-size: 1.125rem;
+  margin-bottom: 0.75rem;
+  list-style: disc;
+}

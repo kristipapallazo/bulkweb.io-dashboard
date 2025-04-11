@@ -1,4 +1,16 @@
-.mainHeader {
+/* 
+
+***WARNING:
+Be carefull when changing .mainheader classname, or even the heght & max-height prop of it. 
+It is FIXED-PIXEL and this can brake the website layout. 
+
+*** FIXED PIXEL HEIGHT = 64px
+
+*** If it is necessary to change the height, please make sure to to update also in the TemplatePage.module.css, .template_container className 
+
+*/
+
+.main_header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -6,4 +18,8 @@
   /* background-color: #282c34; */
   /* color: white; */
   box-shadow: 2px 2px 5px -2px var(--primary-color);
+  flex-shrink: 0;
+
+  height: 64px; /* ***WARNING: DONT CHANGE WITHOUT CAREFULLY OBSERVING THE WARNING IN TOP */
+  max-height: 64px; /* ***WARNING: DONT CHANGE WITHOUT CAREFULLY OBSERVING THE WARNING IN TOP */
 }

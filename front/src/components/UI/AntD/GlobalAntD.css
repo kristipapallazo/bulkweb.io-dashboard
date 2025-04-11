@@ -1,0 +1,22 @@
+.ant-layout {
+  height: 100%;
+}
+.ant-layout-header {
+  background: white;
+}
+
+.ant-layout-sider-trigger,
+.ant-layout-sider-children {
+  border-radius: inherit;
+}
+
+.ant-layout-sider-trigger {
+  position: absolute !important;
+}
+/* Todo: change the color later */
+.ant-layout-sider-trigger:hover {
+  background-color: var(--divider-color) !important;
+}
+.ant-input-group-addon {
+  background-color: white !important;
+}

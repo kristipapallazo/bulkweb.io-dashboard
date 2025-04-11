@@ -1,0 +1,26 @@
+.cont {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  row-gap: var(--m-padding);
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--accent-color);
+  border-radius: var(--m-padding);
+  flex-shrink: 0;
+}
+
+.frstRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.secRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--m-padding);
+}

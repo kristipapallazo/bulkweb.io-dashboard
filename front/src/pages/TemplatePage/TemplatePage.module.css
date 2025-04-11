@@ -1,0 +1,28 @@
+/* 
+
+***WARNING:
+Be carefull when changing .template_container classname, or even the heght & max-height prop of it. 
+It is FIXED-PIXEL and this can brake the website layout. 
+
+*** FIXED PIXEL HEIGHT = 64px
+
+*** If it is necessary to change the height, please make sure to to update also in the MainHeader.module.css, .main_header className 
+
+*/
+
+.template_container {
+  height: calc(100vh - 64px);
+  max-height: calc(100vh - 64px);
+  padding: var(--lg-padding);
+  max-height: calc(100vh - 64px);
+}
+
+.template {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: var(--lg-padding);
+  height: 100%;
+  border-radius: var(--m-border-radius);
+}

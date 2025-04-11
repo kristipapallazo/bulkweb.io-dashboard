@@ -1,16 +1,13 @@
 import { Layout } from "antd";
 import MainHeader from "../../components/Header/MainHeader";
-import { Outlet } from "react-router";
+import classes from "./DashboardPage.module.css";
+import MainContentContainer from "../../components/Content/MainContentContainer/MainContentContainer";
 
 const Dashboard = () => {
   return (
-    <Layout className="app">
+    <Layout className={classes.dashboardPage}>
       <MainHeader />
-      <div className="outlet">
-        <Outlet />
-      </div>
-      {/* <MainContent />
-      <Footer /> */}
+      <MainContentContainer />
     </Layout>
   );
 };

@@ -1,0 +1,30 @@
+.bttn {
+  position: relative;
+  z-index: 1;
+}
+/* .bttn::before { */
+.extendableShadow {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--accent-color);
+  opacity: 0.9;
+  border-radius: inherit;
+  z-index: -1;
+  transform: translateZ(10px);
+}
+.bttn:hover .extendableShadow {
+  transform: translateX(10px);
+}
+
+@keyframes pulse {
+  from {
+    transform: translateZ(0);
+  }
+  to {
+    transform: translateZ(10px);
+  }
+}

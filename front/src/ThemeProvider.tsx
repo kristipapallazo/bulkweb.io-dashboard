@@ -1,18 +1,9 @@
-import { ConfigProvider } from "antd";
+import { ConfigProvider, ThemeConfig } from "antd";
 import { FC, ReactNode, useState } from "react";
 
 interface ThemeProviderProps {
   children: ReactNode;
 }
-
-type ThemeData = {
-  borderRadius: number;
-  colorPrimary: string;
-  Button?: {
-    colorPrimary: string;
-    algorithm?: boolean;
-  };
-};
 
 // const defaultData: ThemeData = {
 //   borderRadius: 6,
@@ -21,13 +12,13 @@ type ThemeData = {
 //   //     colorPrimary: "#00B96B",
 //   //   },
 // };
-const theme = {
+const theme: ThemeConfig = {
   token: {
     colorPrimary: "#ffc107", // Primary Color
-    colorTextPrimary: "#212121", // Primary Text Color
+    // colorTextPrimary: "#212121", // Primary Text Color
     colorTextSecondary: "#757575", // Secondary Text Color
     colorText: "#212121", // General Text Color
-    colorBackground: "#ffecb3", // Light Primary Color (Background)
+    // colorBackground: "#ffecb3", // Light Primary Color (Background)
     colorLink: "#ffa000", // Dark Primary Color (Links)
     colorBorder: "#bdbdbd", // Divider Color
     colorError: "#795548", // Accent Color
@@ -35,6 +26,12 @@ const theme = {
 
     // You can add more tokens here if needed
   },
+  components: {
+    // Sider: {
+    //   /* theme: "light" */
+    // },
+  },
+  // algorithm: theme.defaultAlgorithm,
 };
 
 const ThemeProvider: FC<ThemeProviderProps> = ({ children }) => {

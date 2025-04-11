@@ -1,13 +1,10 @@
 import React from "react";
-import { Layout, theme } from "antd";
-import MainHeader from "./components/Header/MainHeader";
-import MainContent from "./components/Content/MainContent";
-import Footer from "./components/Footer/Footer";
 import ThemeProvider from "./ThemeProvider";
-import "./internalization/internalization";
+import RouterProviderComp from "./router/RouterProviderComp";
 
 import "./App.css";
-import RouterProviderComp from "./router/RouterProviderComp";
+import "./internalization/internalization";
+import "./components/UI/AntD/GlobalAntD.css";
 
 const App: React.FC = () => {
   // const {

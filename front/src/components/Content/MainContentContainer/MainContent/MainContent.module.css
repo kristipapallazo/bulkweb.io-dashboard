@@ -1,0 +1,7 @@
+.mainContentOutlet {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  row-gap: 20px;
+  /* min-height: 100vh; */
+}

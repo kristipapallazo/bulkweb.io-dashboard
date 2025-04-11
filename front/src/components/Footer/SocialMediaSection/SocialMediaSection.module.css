@@ -1,0 +1,28 @@
+.socialMediaSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 5px;
+}
+
+.socialMedia {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 0.8rem;
+  border-right: 2px solid var(--sec-text);
+  border-left: 2px solid var(--sec-text);
+  padding: 0 10px;
+}
+
+.iconsContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 5px;
+}
+.socialLink,
+.socialLink:hover {
+  color: red;
+}
