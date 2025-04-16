@@ -1,4 +1,4 @@
-import { defineConfig /* , loadEnv */ } from "vite";
+import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 
 // https://vite.dev/config/
@@ -37,7 +37,25 @@ import react from "@vitejs/plugin-react";
 //   };
 // });
 
-export default defineConfig({
-  plugins: [react()],
-  base: "/", // This is typically correct for Vercel
+// export default defineConfig({
+//   plugins: [react()],
+//   base: "/",
+// });
+
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), "");
+
+  return {
+    define: {
+      "import.meta.env.GOOGLE_MAPS_API_KEY": JSON.stringify(
+        env.GOOGLE_MAPS_API_KEY
+      ),
+      "import.meta.env.GOOGLE_MAPS_ID": JSON.stringify(env.GOOGLE_MAPS_ID),
+    },
+    plugins: [react()],
+    base: "/", // good for Vercel
+    build: {
+      outDir: "build", // or "dist", but be consistent with Vercel settings
+    },
+  };
 });
