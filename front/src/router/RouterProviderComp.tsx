@@ -49,7 +49,7 @@ interface RouterProviderProps {
   children?: ReactNode;
 }
 const routeConfigs: RouteObject[] = [
-  { index: true, Component: HomePage },
+  { path: "bulkweb-io-dashboard.vercel.app", Component: HomePage },
   {
     path: "template",
     Component: TemplatePage,
