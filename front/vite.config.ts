@@ -20,6 +20,8 @@ export default defineConfig(({ mode }) => {
       "import.meta.env.GOOGLE_MAPS_ID": JSON.stringify(env.GOOGLE_MAPS_ID),
       // "import.meta.env": { MAP_API_KEY: env.MAP_API_KEY }, //incorrect
     },
+    base: "/", // or "./" if deploying under a subpath
+
     // server: {
     //   proxy: {
     //     "/api": {
