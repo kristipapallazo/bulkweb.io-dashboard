@@ -1,6 +1,8 @@
 import React from "react";
 import ThemeProvider from "./ThemeProvider";
 import RouterProviderComp from "./router/RouterProviderComp";
+import { Provider } from "react-redux";
+import { store } from "./redux";
 
 import "./App.css";
 import "./internalization/internalization";
@@ -19,8 +21,10 @@ const App: React.FC = () => {
 
   return (
     <ThemeProvider>
-      <RouterProviderComp />
-      {/* <AppLayout /> */}
+      <Provider store={store}>
+        <RouterProviderComp />
+        {/* <AppLayout /> */}
+      </Provider>
     </ThemeProvider>
   );
 };

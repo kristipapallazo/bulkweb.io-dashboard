@@ -1,0 +1,60 @@
+.contact {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--blue);
+  text-align: center;
+}
+
+.contactInfo {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+.contactItem {
+  text-align: center;
+}
+
+.icon {
+  font-size: 4rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.inputGroup {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.inputGroup input,
+.inputGroup textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}

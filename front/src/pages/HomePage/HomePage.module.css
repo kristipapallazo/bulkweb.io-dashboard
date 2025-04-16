@@ -1,0 +1,87 @@
+.home {
+  height: calc(100%);
+  will-change: background-image;
+  background-image: url("../../assets/homepage-img.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  isolation: isolate;
+}
+
+.home::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom right,
+    rgba(0, 0, 0, 0.5),
+    rgba(44, 95, 52, 0.5)
+  );
+  z-index: -1;
+  backdrop-filter: blur(3px);
+}
+
+.overlay {
+  text-align: center;
+  padding: 2rem;
+  max-width: 700px;
+}
+
+.title {
+  font-family: "Roboto", sans-serif;
+  font-size: 4rem;
+  font-weight: 600;
+  color: #2c5f34; /* or your preferred color */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: #eaeaea;
+  margin-bottom: 2rem;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.primaryButton,
+.secondaryButton {
+  padding: 0.75rem 1.75rem;
+  font-size: 1rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.primaryButton {
+  background-color: var(--primary-green);
+  color: white;
+  border: none;
+}
+
+.primaryButton:hover {
+  background-color: #244d2b;
+}
+
+.secondaryButton {
+  background-color: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.secondaryButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}

@@ -1,16 +1,28 @@
 import { Menu } from "antd";
-import { GrDeploy } from "react-icons/gr";
 import MenuItem from "../MenuItem";
 import { MdOutlineFavorite, MdWorkHistory } from "react-icons/md";
 import { HiTemplate } from "react-icons/hi";
+import { MenuItemAntd } from "../../../declarations/antD";
+import { useTemplatePageCtx } from "../../../context/TemplatePageCtxProvider";
+import { GrDeploy } from "react-icons/gr";
 
 import classes from "./SubMenu.module.css";
 
-const items: MenuItem[] = [
+const items: MenuItemAntd[] = [
   {
-    key: "all-templates",
-    label: <MenuItem id="all templates" />,
+    key: "domain-setup",
+    label: <MenuItem id="domain-setup" />,
     icon: <HiTemplate />,
+  },
+  {
+    key: "purchase-templates",
+    label: <MenuItem id="purchase-templates" />,
+    icon: <HiTemplate />,
+  },
+  {
+    key: "hosting",
+    label: <MenuItem id="hosting" />,
+    icon: <GrDeploy />,
   },
   {
     key: "favorites",
@@ -22,21 +34,21 @@ const items: MenuItem[] = [
     label: <MenuItem id="history" />,
     icon: <MdWorkHistory />,
   },
-  {
-    key: "pricing",
-    label: <MenuItem id="deploy" />,
-    icon: <GrDeploy />,
-  },
 ];
 
 const SubMenu = () => {
+  const { templateModule, setTemplateModule } = useTemplatePageCtx();
+
   return (
     <Menu
       theme="light"
       mode="vertical"
       className={classes.subMenu}
-      // defaultSelectedKeys={["2"]}
+      selectedKeys={[templateModule]}
       items={items}
+      onClick={({ key }) => {
+        setTemplateModule(key);
+      }}
     />
   );
 };

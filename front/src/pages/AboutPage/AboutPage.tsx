@@ -4,7 +4,9 @@ import classes from "./AboutPage.module.css";
 const AboutPage: React.FC = () => {
   return (
     <div className={classes.aboutPage}>
-      <Circle style={{ left: 25, top: -100, width: "100%", height: 220 }} />
+      <Circle
+        style={{ /* left: 25, */ top: -100, width: "100%", height: 220 }}
+      />
       <div className={classes.content}>
         <h1 className={classes.title}>About BulkWeb.io</h1>
 

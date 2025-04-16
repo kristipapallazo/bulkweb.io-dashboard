@@ -1,9 +1,3 @@
-interface User {
-  id: number;
-  name: string;
-  email: string;
-  credits: number;
-}
 type BulkCreationRequest = {
   numberOfSites: number;
   baseDomain: string;
@@ -28,4 +22,29 @@ type Module =
   | "blog"
   | "blog-post"
   | "404";
-type SubModule = "favorites" | "history" | "pricing";
+type TemplateModule =
+  | "domain-setup"
+  | "purchase-templates"
+  | "favorites"
+  | "history";
+type TemplateModules = TemplateModule[];
+type DomainMode = "custom-domain" | "purchase-domain";
+
+interface ContactFormItem {
+  key: string;
+  label: string;
+  required?: boolean;
+  type?: RuleType;
+  component?: string;
+}
+type SetStateFn<D = any> = Dispatch<SetStateAction<D>>;
+
+interface OnFinishLogin {
+  email: string;
+  password: string;
+}
+interface LocalStorageLoginItemDict {
+  [email: string]: OnFinishLogin;
+}
+
+type PaymentMethod = "card" | "bank" | "cripto";

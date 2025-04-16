@@ -6,7 +6,7 @@ import TranslatedButton from "../UI/AntD/Buttons/TranslatedBttn";
 import Logo from "../Atoms/Logo/Logo";
 
 const CreateProjectBttn = () => {
-  return <TranslatedButton label="Create Project" type="primary" />;
+  return <TranslatedButton label="Profile" type="primary" />;
 };
 
 const MainHeader = () => {

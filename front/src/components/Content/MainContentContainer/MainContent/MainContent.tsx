@@ -2,7 +2,6 @@ import { useTranslation } from "react-i18next";
 import { Outlet } from "react-router";
 import classes from "./MainContent.module.css";
 
-/* Todo: relocate properly the bttn */
 const ChangeLangBttn = () => {
   const { i18n } = useTranslation();
 

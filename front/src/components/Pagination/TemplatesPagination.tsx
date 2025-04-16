@@ -1,14 +1,20 @@
 import { FC } from "react";
 import { Pagination, PaginationProps } from "antd";
-import { TEMPLATES } from "../Content/TemplateContentContainer/GridContainer/GridContainer";
 import classes from "./TemplatesPagination.module.css";
+import { useFilteredTemplates } from "../../hooks/useFilteredTemplates";
+import { useTranslation } from "react-i18next";
 
-const TemplatesPagination: FC<PaginationProps> = (...props) => {
+const TemplatesPagination: FC<PaginationProps> = (props) => {
+  const { total } = useFilteredTemplates();
+  const { t } = useTranslation();
+
   return (
     <Pagination
+      style={{ flex: 1 }}
       {...props}
       className={classes.pagination_cont}
-      total={TEMPLATES.length}
+      total={total}
+      showTotal={(total) => t(`${total} items`)}
     />
   );
 };

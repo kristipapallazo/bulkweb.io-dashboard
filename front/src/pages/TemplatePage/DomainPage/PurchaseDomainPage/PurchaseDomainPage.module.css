@@ -1,0 +1,30 @@
+.inputGroup {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.input {
+  flex: 1;
+  min-width: 200px;
+}
+
+.select {
+  width: 100px;
+}
+
+.buyContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.result {
+  display: flex;
+  flex-direction: column;
+}
+
+.spinner {
+  margin-top: 1rem;
+}

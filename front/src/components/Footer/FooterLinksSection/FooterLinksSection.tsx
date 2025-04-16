@@ -50,15 +50,15 @@ const FOOTER_LINKS_DICT: FooterLinksSection = {
     "Blog",
     "Partnerships",
   ],
-  Support: [
-    "Help Center",
-    "FAQs",
-    "System Status",
-    "Feature Requests",
-    "Community Forum",
-    "API Documentation",
-    "Contact Support",
-  ],
+  // Support: [
+  //   "Help Center",
+  //   "FAQs",
+  //   "System Status",
+  //   "Feature Requests",
+  //   "Community Forum",
+  //   "API Documentation",
+  //   "Contact Support",
+  // ],
 };
 
 interface ListProps {
@@ -66,7 +66,12 @@ interface ListProps {
 }
 const List: FC<ListProps> = ({ links }) => {
   const items = links.map((link, index) => (
-    <Link key={index} to={link} className={classes.item}>
+    <Link
+      style={{ marginLeft: "5px" }}
+      key={index}
+      to={link}
+      className={classes.item}
+    >
       {link}
     </Link>
   ));

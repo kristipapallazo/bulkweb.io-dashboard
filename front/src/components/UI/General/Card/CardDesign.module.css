@@ -1,0 +1,9 @@
+.card {
+  background-color: transparent;
+  /* perspective: 1000px; */
+  border-radius: 10px;
+  cursor: pointer;
+  /* width: 300px; */
+  /* height: 300px; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+}

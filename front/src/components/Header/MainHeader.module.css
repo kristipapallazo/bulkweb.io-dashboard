@@ -19,7 +19,9 @@ It is FIXED-PIXEL and this can brake the website layout.
   /* color: white; */
   box-shadow: 2px 2px 5px -2px var(--primary-color);
   flex-shrink: 0;
-
   height: 64px; /* ***WARNING: DONT CHANGE WITHOUT CAREFULLY OBSERVING THE WARNING IN TOP */
   max-height: 64px; /* ***WARNING: DONT CHANGE WITHOUT CAREFULLY OBSERVING THE WARNING IN TOP */
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }

@@ -1,6 +1,9 @@
 .ant-layout {
   height: 100%;
+  min-height: 100% !important;
+  /* background: white !important; */
 }
+
 .ant-layout-header {
   background: white;
 }
@@ -12,6 +15,8 @@
 
 .ant-layout-sider-trigger {
   position: absolute !important;
+  /* margin: 5px; */
+  /* padding: 5px; */
 }
 /* Todo: change the color later */
 .ant-layout-sider-trigger:hover {
@@ -20,3 +25,20 @@
 .ant-input-group-addon {
   background-color: white !important;
 }
+/* todo: check later */
+.ant-tabs-tab {
+  padding: 0;
+}
+
+/* .ant-card {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+}
+.ant-card-cover {
+  height: 30%;
+  flex-shrink: 0;
+}
+.ant-card-body {
+  flex: 1;
+} */

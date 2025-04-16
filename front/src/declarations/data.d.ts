@@ -1,31 +1,52 @@
 /* Flow => Niche => Categ => Template  */
 
-type NicheId = "landing-page" | "ecommerce" | "sport-fantasy" | "social-casino";
+type NicheId =
+  | "all-niches"
+  | "landing-page"
+  | "ecommerce"
+  | "sport-fantasy"
+  | "social-casino";
 
 interface Niche {
   id: NicheId;
   name: string;
+  categs: CategAllIds;
 }
+type NicheAllIds = NicheId[];
 type AllNiches = Niche[];
 
+// interface NichesById {
+//   [nicheId: NicheId]: Niche;
+// }
+type NichesById = Record<NicheId, Niche>;
+
+/* Categories */
 type CategId = number;
 interface Categ {
   id: CategId;
   name: string;
   niche: NicheId;
 }
+interface CategById {
+  [categId: CategId]: Categ;
+}
 type AllCategs = Categ[];
+type CategAllIds = CategId[];
 
+/* Templates */
 type TemplateId = number;
 interface Template {
-  id: TemplateId;
   name: string;
   image?: string;
   niche: NicheId;
   categ: CategId;
   price: number;
 }
-type Templates = Template[];
+type AllTemplates = Template[];
+type TemplateAllIds = TemplateId[];
+interface TemplateById {
+  [templateId: TemplateId]: Template;
+}
 
 interface Product {
   niche: NicheId;
@@ -51,18 +72,49 @@ type PaymentInfo = {
   paymentMethod?: PaymentMethod;
 };
 
-type WebsiteCreationFlow = {
-  domain: DomainOption;
-  niche: Niche;
-  category: Category;
-  template: Template;
-  hosting: HostingPreference;
-  payment: PaymentInfo;
-};
+interface PaginationObject {
+  currentPage: number;
+  pageSize: number;
+}
+type SearchQuery = string;
 
-type WebsiteEntry = {
-  id: string;
+interface WebsiteCreationFlow {
+  domain: string | null;
+  niche: NicheId;
+  category: CategId | null;
+  template: TemplateId | null;
+  hosting: HostingPref | null;
+  payment: PaymentInfo | null;
+  selectedTemplates: TemplateAllIds;
+  searchQuery: SearchQuery;
+  pagination: {
+    currentPage: number;
+    pageSize: number;
+  };
+  nicheById: NichesById;
+  nicheAllIds: NicheAllIds;
+  categById: CategById;
+  categAllIds: CategAllIds;
+  filteredCategs: CategAllIds;
+}
+type WebsiteId = number;
+interface Website {
+  id: number;
   domain: string;
-  createdAt: string;
-  status: "active" | "processing" | "failed";
-};
+  template: TemplateId;
+  url: string;
+  hosting?: HostingPref;
+  createdAt?: string;
+}
+interface Websites {
+  [websitesId: WebsiteId]: Website;
+}
+interface UserState {
+  user: {
+    email: string;
+    password: string;
+  };
+  websites: Websites;
+  credits: number;
+  purchaseHistory: number[]; // TemplateId[]
+}

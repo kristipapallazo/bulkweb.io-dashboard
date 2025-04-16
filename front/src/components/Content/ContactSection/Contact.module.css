@@ -1,0 +1,71 @@
+.section {
+  min-height: 100vh;
+  padding: 2rem;
+  will-change: background-image;
+  background-image: url("../../../assets//green-bckg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* color: white; */
+  isolation: isolate;
+}
+
+.card {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 1.5rem !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: none;
+}
+
+.heading {
+  font-size: 2rem;
+  font-weight: 600;
+  /* color: #2c5f34; */
+  color: var(--primary-text);
+  text-align: center;
+}
+
+/* .heading {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--primary-green);
+  margin-bottom: 1.5rem;
+  text-align: center;
+} */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.input,
+.textarea {
+  border-radius: 0.75rem !important;
+  border-color: var(--divider-color) !important;
+  color: var(--primary-text);
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 2px rgba(255, 193, 7, 0.2) !important;
+}
+
+.button {
+  background-color: var(--primary-green) !important;
+  border: none;
+  height: 40px;
+  font-weight: 500;
+  font-size: 1rem;
+  border-radius: 0.75rem;
+}
+
+.button:hover {
+  background-color: var(--dark-green) !important;
+}

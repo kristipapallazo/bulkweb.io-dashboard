@@ -8,14 +8,14 @@ interface ItemProps {
   label?: string;
 }
 
-const MenuItem: FC<ItemProps> = ({ id }) => {
+const MenuItem: FC<ItemProps> = ({ id, label }) => {
   const { t } = useTranslation();
 
-  const label = capitalizeFrstLetter(id);
+  const finalLabel = capitalizeFrstLetter(label || id);
 
   return (
     <NavLink to={id} className={({ isActive }) => (isActive ? "active" : "")}>
-      {t(label)}
+      {t(finalLabel)}
     </NavLink>
   );
 };

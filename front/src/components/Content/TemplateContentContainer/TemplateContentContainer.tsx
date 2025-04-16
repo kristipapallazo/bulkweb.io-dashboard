@@ -1,6 +1,8 @@
 import GridContainer from "./GridContainer/GridContainer";
-import classes from "./TemplateContentContainer.module.css";
 import TemplateFilterContainer from "./TemplateFilterContainer/TemplateFilterContainer";
+import classes from "./TemplateContentContainer.module.css";
+
+/* Todo: check this later, not used rn */
 
 const TemplateContentContainer = () => {
   return (

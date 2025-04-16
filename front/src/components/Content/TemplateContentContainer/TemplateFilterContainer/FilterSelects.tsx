@@ -1,37 +1,72 @@
 import { DefaultOptionType } from "antd/es/select";
 import TranslatedSelect from "../../../UI/AntD/Select/TranslatedSelect";
-import { categs, niches } from "../GridContainer/GridContainer";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootStoreState } from "../../../../redux";
+import { setCategory, setNiche } from "../../../../redux/Slices/FlowSlice";
+import { useTranslation } from "react-i18next";
 
 type Options = DefaultOptionType[];
 
 const NicheSelect = () => {
-  const finalNiches = [{ id: "all-niches", name: "All niches" }, ...niches];
+  const { nicheAllIds, nicheById, niche } = useSelector(
+    (state: RootStoreState) => state.flow
+  );
+  const dispatch = useDispatch<AppDispatch>();
+  const { t } = useTranslation();
 
-  const options: Options = finalNiches.map(({ id, name }) => ({
-    value: id,
-    label: name,
-  }));
+  const options: Options = nicheAllIds.map((nicheId) => {
+    const { id, name } = nicheById[nicheId];
+    return {
+      value: id,
+      label: t(name),
+    };
+  });
 
-  const defaultValue = finalNiches[0].id;
+  const handleChange = (value: NicheId) => {
+    dispatch(setNiche(value));
+  };
 
   return (
     <TranslatedSelect
       options={options}
       width={200}
-      defaultValue={defaultValue}
+      value={niche}
+      onChange={handleChange}
     />
   );
 };
 
 const CategSelect = () => {
-  const finalCategs = [{ id: "all-categs", name: "All categs" }, ...categs];
+  const { filteredCategs, categById, category } = useSelector(
+    (state: RootStoreState) => state.flow
+  );
+  const dispatch = useDispatch<AppDispatch>();
+  const { t } = useTranslation();
 
-  const options: Options = finalCategs.map(({ id, name }) => ({
-    value: id,
-    label: name,
-  }));
+  const options: Options = filteredCategs.map((categId) => {
+    const { id, name } = categById[categId as CategId];
 
-  return <TranslatedSelect options={options} width={200} />;
+    return {
+      value: id,
+      label: t(name),
+    };
+  });
+
+  const handleChange = (value?: CategId) => {
+    const val: CategId | null = value || null;
+    dispatch(setCategory(val));
+  };
+
+  return (
+    <TranslatedSelect
+      placeholder={t("Category")}
+      allowClear={true}
+      options={options}
+      width={200}
+      value={category}
+      onChange={handleChange}
+    />
+  );
 };
 
 export { NicheSelect, CategSelect };

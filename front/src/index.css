@@ -1,5 +1,6 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: system-ui, Avenir, Helvetica, Arial, sans-serif; */
+  font-family: Georgia, serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -21,6 +22,8 @@
   --accent-color: #795548; /* brown */
   --sec-text: #757575; /* gray */
   --divider-color: #bdbdbd; /* lightgray */
+  --primary-green: #2c5f34; /* green */
+  --dark-green: #244b2b /* dark-green */
 
   /* icons font size */
   --sm-icon: 15px;
@@ -39,7 +42,7 @@
   --lg-border-radius: 15px;
 
   /* card template */
-  --card-template-width: 280px;
+  --card-template-width: 300px;
 
   /* input & select */
   --input-s-width: 150px;
@@ -62,11 +65,13 @@ body {
   place-items: center; */
   min-width: 320px;
   height: 100vh;
-  color: black;
+  min-height: 100vh;
+  color: var(--primary-text);
 }
 
 #root {
-  height: 100%;
+  /* height: 100%; */
+  min-height: 100vh;
 }
 
 /* Todo: adjust the link correctly  */

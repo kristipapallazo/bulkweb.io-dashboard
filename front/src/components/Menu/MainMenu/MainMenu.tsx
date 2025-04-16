@@ -1,10 +1,11 @@
 import { Menu } from "antd";
 import { IoBusinessSharp } from "react-icons/io5";
 import { GrTemplate } from "react-icons/gr";
-import { IoLogIn } from "react-icons/io5";
 import { GiPriceTag } from "react-icons/gi";
 import MenuItem from "../MenuItem";
 import { FC } from "react";
+import { IoIosContact } from "react-icons/io";
+import { MenuItemAntd } from "../../../declarations/antD";
 
 import classes from "./MainMenu.module.css";
 
@@ -16,7 +17,7 @@ interface ItemProps {
 
 const LoginMenuItem: FC<ItemProps> = ({ id }) => {
   /* Todo: define user */
-  let user: User | undefined = undefined;
+  let user: UserState | undefined = undefined;
   const properId = id;
   const label = "";
 
@@ -24,16 +25,16 @@ const LoginMenuItem: FC<ItemProps> = ({ id }) => {
   return <MenuItem id={properId} label={label} />;
 };
 
-const items: MenuItem[] = [
+const items: MenuItemAntd[] = [
   {
     key: "template",
-    label: <MenuItem id="template" />,
+    label: <MenuItem id="template" label="Create web" />,
     icon: <GrTemplate />,
   },
   {
-    key: "about",
-    label: <MenuItem id="about" />,
-    icon: <IoBusinessSharp />,
+    key: "my-websites",
+    label: <MenuItem id="my-websites" label="my websites" />,
+    icon: <GiPriceTag />,
   },
   {
     key: "pricing",
@@ -41,9 +42,19 @@ const items: MenuItem[] = [
     icon: <GiPriceTag />,
   },
   {
+    key: "contact",
+    label: <MenuItem id="contact" />,
+    icon: <IoBusinessSharp />,
+  },
+  {
+    key: "about",
+    label: <MenuItem id="about" />,
+    icon: <IoBusinessSharp />,
+  },
+  {
     key: "login",
     label: <LoginMenuItem id="login" />,
-    icon: <IoLogIn />,
+    icon: <IoIosContact />,
   },
 ];
 

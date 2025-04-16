@@ -1,9 +1,12 @@
-import { PaginationProps } from "antd";
 import TemplatesPagination from "../../../Pagination/TemplatesPagination";
-import classes from "./TemplateFilterContainer.module.css";
 import { CategSelect, NicheSelect } from "./FilterSelects";
 import TemplateSearch from "./TemplateSearch";
 import DomainConatainer from "./DomainContainer/DomainConatainer";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootStoreState } from "../../../../redux";
+import { setPaginationFilter } from "../../../../redux/Slices/FlowSlice";
+
+import classes from "./TemplateFilterContainer.module.css";
 
 const FrstRow = () => {
   return (
@@ -11,31 +14,31 @@ const FrstRow = () => {
       <DomainConatainer />
       <NicheSelect />
       <CategSelect />
+
+      <DomainConatainer type="template" />
     </div>
   );
 };
 
 const SecRow = () => {
-  const currPage = 1;
-  const pageSize = 10;
-  const onShowSizeChange: PaginationProps["onShowSizeChange"] = (
-    current,
-    pageSize
-  ) => {
-    console.log("current, pageSize", current, pageSize);
-  };
-  const handlePageChange = (page: number) => {
-    // setCurrentPage(page);
-  };
+  const {
+    pagination: { currentPage, pageSize },
+  } = useSelector((state: RootStoreState) => state.flow);
+  const dispatach = useDispatch<AppDispatch>();
 
+  const onChange = (page: number, newPageSize: number) => {
+    dispatach(
+      setPaginationFilter({ currentPage: page, pageSize: newPageSize })
+    );
+  };
   return (
     <div className={classes.secRow}>
       <TemplateSearch />
+
       <TemplatesPagination
-        current={currPage}
-        // pageSize={pageSize}
-        onChange={handlePageChange}
-        onShowSizeChange={onShowSizeChange}
+        current={currentPage}
+        pageSize={pageSize}
+        onChange={onChange}
       />
     </div>
   );

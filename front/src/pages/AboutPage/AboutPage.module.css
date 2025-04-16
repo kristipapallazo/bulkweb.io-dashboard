@@ -1,11 +1,16 @@
 .aboutPage {
   position: relative;
+  background: linear-gradient(
+    to bottom,
+    var(--light-primary),
+    var(--accent-color)
+  );
 }
 .content {
   position: relative;
   display: flex;
   flex-direction: column;
-  max-width: 800px;
+  width: 65%;
   margin: 0 auto;
   padding: 3rem 1.5rem;
 }

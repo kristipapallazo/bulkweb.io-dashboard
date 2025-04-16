@@ -1,16 +1,26 @@
+.card {
+  margin: auto;
+}
+
 .cardDetails {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding-top: 10px;
-  max-width: var(--card-template-width);
+  /* max-width: var(--card-template-width); */
   margin: 0 auto;
+  gap: 10px;
 }
 
+.priceRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .price {
   font-size: 18px;
   font-weight: bold;
-  color: #333;
+  color: var(--primary-color);
 }
 
 .actions {
@@ -19,9 +29,8 @@
   gap: 10px;
 }
 
-.favoriteButton,
 .cartButton {
-  width: 48%;
+  width: 100%;
 }
 
 .coverImage {
@@ -30,5 +39,5 @@
 }
 
 .tags {
-  margin-bottom: 10px;
+  margin: 10px 0;
 }
