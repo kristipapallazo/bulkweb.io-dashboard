@@ -6,33 +6,38 @@ import react from "@vitejs/plugin-react";
 //   plugins: [react()],
 // });
 
-export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd(), "");
+// export default defineConfig(({ mode }) => {
+//   const env = loadEnv(mode, process.cwd(), "");
 
-  // console.log("mode, env", mode, env);
+//   // console.log("mode, env", mode, env);
 
-  return {
-    define: {
-      "process.env": {}, // Clear process.env
-      "import.meta.env.GOOGLE_MAPS_API_KEY": JSON.stringify(
-        env.GOOGLE_MAPS_API_KEY
-      ), //correct one
-      "import.meta.env.GOOGLE_MAPS_ID": JSON.stringify(env.GOOGLE_MAPS_ID),
-      // "import.meta.env": { MAP_API_KEY: env.MAP_API_KEY }, //incorrect
-      build: {
-        outDir: "build",
-      },
-    },
-    base: "/", // or "./" if deploying under a subpath
+//   return {
+//     define: {
+//       "process.env": {}, // Clear process.env
+//       "import.meta.env.GOOGLE_MAPS_API_KEY": JSON.stringify(
+//         env.GOOGLE_MAPS_API_KEY
+//       ), //correct one
+//       "import.meta.env.GOOGLE_MAPS_ID": JSON.stringify(env.GOOGLE_MAPS_ID),
+//       // "import.meta.env": { MAP_API_KEY: env.MAP_API_KEY }, //incorrect
+//       build: {
+//         outDir: "build",
+//       },
+//     },
+//     base: "/", // or "./" if deploying under a subpath
 
-    // server: {
-    //   proxy: {
-    //     "/api": {
-    //       target: env.VITE_API_URL || "http://localhost:3000",
-    //       changeOrigin: true,
-    //     },
-    //   },
-    // },
-    plugins: [react()],
-  };
+//     // server: {
+//     //   proxy: {
+//     //     "/api": {
+//     //       target: env.VITE_API_URL || "http://localhost:3000",
+//     //       changeOrigin: true,
+//     //     },
+//     //   },
+//     // },
+//     plugins: [react()],
+//   };
+// });
+
+export default defineConfig({
+  plugins: [react()],
+  base: "/", // This is typically correct for Vercel
 });
