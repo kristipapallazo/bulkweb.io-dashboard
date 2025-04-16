@@ -195,8 +195,8 @@ const LoginCardContent: FC<LoginCardTemplateProps> = ({
         </div>
         <div className={styles.bttn_container}>
           <Button
-            // type="primary"
-            className={styles.relocate_bttn}
+            type="primary"
+            // className={styles.relocate_bttn}
             onClick={handleRelocate}
           >
             <span>Go to</span>

@@ -29,7 +29,7 @@ const HomePage = () => {
             Create New Website
           </button>
           <button onClick={handleLogin} className={classes.secondaryButton}>
-            View My Websites
+            Login/Register
           </button>
         </div>
       </div>
