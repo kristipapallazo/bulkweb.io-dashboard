@@ -7,7 +7,7 @@ import DomainConatainer from "../../../components/Content/TemplateContentContain
 
 const { Title } = Typography;
 
-const endings = [".com", ".net", ".org", ".io", ".dev"];
+// const endings = [".com", ".net", ".org", ".io", ".dev"];
 
 export const DOMAIN_MODES: DomainMode[] = ["custom-domain", "purchase-domain"];
 
@@ -15,7 +15,6 @@ const DomainPage = () => {
   const [mode, setMode] = useState<DomainMode>(DOMAIN_MODES[0]);
   const navigate = useNavigate();
   const location = useLocation();
-
   useEffect(() => {
     const currPath = location.pathname;
 
@@ -34,7 +33,7 @@ const DomainPage = () => {
 
       <DomainTab />
       <div className={styles.domain_page_outlet}>
-        <Outlet />
+        <Outlet context={{ setMode }} />
       </div>
     </div>
   );

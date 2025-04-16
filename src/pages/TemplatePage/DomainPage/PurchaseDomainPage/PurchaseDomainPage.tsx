@@ -5,26 +5,26 @@ import {
   SearchOutlined,
 } from "@ant-design/icons";
 import { Typography, message } from "antd";
-import { useTranslation } from "react-i18next";
+// import { useTranslation } from "react-i18next";
 import styles from "./PurchaseDomainPage.module.css";
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router";
+// import { useLocation, useNavigate } from "react-router";
 
 const { Text } = Typography;
 
 const endings = [".com", ".net", ".org", ".io", ".dev"];
 
 const PurchaseDomainPage = () => {
-  const [domain, setDomain] = useState("");
+  // const [domain, setDomain] = useState("");
   const [searchName, setSearchName] = useState("");
   const [ending, setEnding] = useState(".com");
   const [loading, setLoading] = useState(false);
   const [availability, setAvailability] = useState<null | boolean>(null);
 
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
 
-  const navigate = useNavigate();
-  const location = useLocation();
+  // const navigate = useNavigate();
+  // const location = useLocation();
 
   const handleSearch = () => {
     setLoading(true);

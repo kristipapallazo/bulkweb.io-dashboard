@@ -1,11 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useState,
-  ReactNode,
-  useEffect,
-} from "react";
-import { useLocation, useNavigate } from "react-router";
+import { createContext, useContext, useState, ReactNode } from "react";
 
 export const DOMAIN_MODES: DomainMode[] = ["custom-domain", "purchase-domain"];
 

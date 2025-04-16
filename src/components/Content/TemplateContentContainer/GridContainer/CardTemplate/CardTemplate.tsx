@@ -1,8 +1,8 @@
 import React, { memo, useState } from "react";
 import { Card, Tag, Button, message } from "antd";
 import ImageNotFound from "../../../../../assets/image-not-found.jpg";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootStoreState } from "../../../../../redux";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../../../../redux";
 
 import classes from "./CardTemplate.module.css";
 import { FaHeart, FaHeartBroken } from "react-icons/fa";

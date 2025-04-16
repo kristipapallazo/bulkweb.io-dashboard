@@ -59,6 +59,8 @@ const PricingPage: React.FC = () => {
   const [creditsToBuy, setCreditsToBuy] = useState<number>(0);
   const [amountToBuy, setAmountToBuy] = useState<number>(0);
 
+  /* Todo: remove later */
+
   useEffect(() => {
     const storedCredits = localStorage.getItem("credits");
     const history = localStorage.getItem("creditHistory");
@@ -66,6 +68,7 @@ const PricingPage: React.FC = () => {
     if (history) setCreditHistory(JSON.parse(history));
   }, []);
 
+  console.log("credits :>> ", credits);
   const handleBuy = (pckg: CreditPackage) => {
     const { credits, price } = pckg;
 

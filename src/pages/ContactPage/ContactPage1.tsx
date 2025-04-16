@@ -1,8 +1,16 @@
-import { Rule } from "antd/es/form";
 import { Col, Form, Input, Row, RowProps } from "antd";
 import { FC, ReactNode } from "react";
-import { FormItem } from "./Contact";
+// import { FormItem } from "./Contact";
 import TextArea from "antd/es/input/TextArea";
+import { RuleObject } from "antd/es/form";
+
+interface FormItem {
+  key: string;
+  label: string;
+  required?: boolean;
+  type?: RuleObject["type"]; // restricts to valid types
+  component?: "textarea" | "input"; // optional: to customize rendering
+}
 
 interface FormRowProps extends RowProps {
   rowItemsArr: FormItem[];
@@ -13,7 +21,7 @@ const FormRow: FC<FormRowProps> = ({ rowItemsArr, gutter }) => {
   const formItems = rowItemsArr.map((item) => {
     const { key, label, required, type, component } = item;
 
-    const rules = [] as Rule[];
+    const rules = [] as RuleObject[];
 
     if (required) {
       const messageLabel: string = key.includes("-")

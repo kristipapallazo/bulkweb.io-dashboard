@@ -1,5 +1,4 @@
 import { Form, Input, Button, message } from "antd";
-import CardDesign from "../../UI/General/Card/CardDesign";
 import styles from "./Contact.module.css";
 
 export default function Contact() {

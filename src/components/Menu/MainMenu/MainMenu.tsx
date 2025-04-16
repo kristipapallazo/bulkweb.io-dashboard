@@ -7,7 +7,7 @@ import { FC } from "react";
 import { IoIosContact } from "react-icons/io";
 import { MenuItemAntd } from "../../../declarations/antD";
 
-import classes from "./MainMenu.module.css";
+// import classes from "./MainMenu.module.css";
 
 interface ItemProps {
   id: string;
@@ -17,7 +17,6 @@ interface ItemProps {
 
 const LoginMenuItem: FC<ItemProps> = ({ id }) => {
   /* Todo: define user */
-  let user: UserState | undefined = undefined;
   const properId = id;
   const label = "";
 

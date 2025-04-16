@@ -6,12 +6,12 @@ const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
 const Dashboard = lazy(() => import("../pages/DashboardPage/DashboardPage"));
 const PricingPage = lazy(() => import("../pages/PricingPage/PricingPage"));
 const LoginPage = lazy(() => import("../pages/LoginPage/LoginPage"));
-const CreateProductPage = lazy(
-  () => import("../pages/CreateProductPage/CreateProductPage")
-);
-const CreateBulkPage = lazy(
-  () => import("../pages/CreateBulkPage/CreateBulkPage")
-);
+// const CreateProductPage = lazy(
+//   () => import("../pages/CreateProductPage/CreateProductPage")
+// );
+// const CreateBulkPage = lazy(
+//   () => import("../pages/CreateBulkPage/CreateBulkPage")
+// );
 const AboutPage = lazy(() => import("../pages/AboutPage/AboutPage"));
 const ContactPage = lazy(() => import("../pages/ContactPage/ContactPage"));
 const TemplatePage = lazy(() => import("../pages/TemplatePage/TemplatePage"));

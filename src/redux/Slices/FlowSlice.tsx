@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { CATEG_BY_ID, NICHES_BY_ID, TEMPLATE_BY_ID } from "../TempStaticData";
+import { CATEG_BY_ID, NICHES_BY_ID } from "../TempStaticData";
 
 const initialNiches: NicheAllIds = Object.keys(NICHES_BY_ID) as NicheAllIds;
 const initialCategs: TemplateAllIds = Object.values(

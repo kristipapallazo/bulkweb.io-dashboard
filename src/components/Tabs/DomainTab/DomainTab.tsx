@@ -3,6 +3,7 @@ import { Tabs } from "antd";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router";
 import styles from "./DomainTab.module.css";
+import { FC } from "react";
 
 interface DomainTabItem {
   key: DomainMode;
@@ -68,7 +69,10 @@ const DomainTab = () => {
     />
   );
 };
-export const HostingTab = () => {
+interface Props {
+  setMode: SetStateFn<HostingMode>;
+}
+export const HostingTab: FC<Props> = () => {
   const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();

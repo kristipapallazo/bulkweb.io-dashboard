@@ -1,6 +1,6 @@
 import { Button, message } from "antd";
 import { CloudUploadOutlined } from "@ant-design/icons";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import styles from "../SelfHosted/SelfHosted.module.css";
 import { RootStoreState } from "../../../redux";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,7 +10,7 @@ import { useWebCreateInial } from "../../../hooks/useFilteredTemplates";
 const OurServerHosted = () => {
   const [isDeployed, setIsDeployed] = useState<boolean>(false);
   const [deployUrl, setDeployUrl] = useState<string | null>(null);
-  const [canDeplooy, setCanDeplooy] = useState<boolean>(false);
+  // const [canDeplooy, setCanDeplooy] = useState<boolean>(false);
 
   const amountCredits = 10;
 

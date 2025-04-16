@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Row, Radio, Typography, message } from "antd";
+import { useEffect, useState } from "react";
+import { Typography } from "antd";
 import { Outlet, useLocation, useNavigate } from "react-router";
 // import DomainConatainer from "../../../components/Content/TemplateContentContainer/TemplateFilterContainer/DomainContainer/DomainConatainer";
 import styles from "../TemplatePage/DomainPage/DomainPage.module.css";
@@ -7,37 +7,37 @@ import { HostingTab } from "../../components/Tabs/DomainTab/DomainTab";
 
 const { Title } = Typography;
 
-const HostingPage1: React.FC = () => {
-  const [selectedHosting, setSelectedHosting] = useState<"self" | "bulk">(
-    "self"
-  );
-  const [isDeployed, setIsDeployed] = useState(false);
+// const HostingPage1: React.FC = () => {
+//   const [selectedHosting, setSelectedHosting] = useState<"self" | "bulk">(
+//     "self"
+//   );
+//   const [isDeployed, setIsDeployed] = useState(false);
 
-  const handleHostClick = () => {
-    // Simulate deployment and credit deduction
-    setIsDeployed(true);
-    message.success("Website deployed on BulkWeb.io servers!");
-  };
+//   const handleHostClick = () => {
+//     // Simulate deployment and credit deduction
+//     setIsDeployed(true);
+//     message.success("Website deployed on BulkWeb.io servers!");
+//   };
 
-  return (
-    <div style={{ padding: "2rem" }}>
-      <Title level={3}>Choose Hosting Option</Title>
+//   return (
+//     <div style={{ padding: "2rem" }}>
+//       <Title level={3}>Choose Hosting Option</Title>
 
-      <Radio.Group
-        onChange={(e) => setSelectedHosting(e.target.value)}
-        value={selectedHosting}
-        style={{ marginBottom: 24 }}
-      >
-        <Radio value="self">🗃️ Self-hosted (download backup)</Radio>
-        <Radio value="bulk">☁️ Host on BulkWeb.io servers</Radio>
-      </Radio.Group>
+//       <Radio.Group
+//         onChange={(e) => setSelectedHosting(e.target.value)}
+//         value={selectedHosting}
+//         style={{ marginBottom: 24 }}
+//       >
+//         <Radio value="self">🗃️ Self-hosted (download backup)</Radio>
+//         <Radio value="bulk">☁️ Host on BulkWeb.io servers</Radio>
+//       </Radio.Group>
 
-      <Row gutter={16}>
-        {selectedHosting === "self" ? <div></div> : <div></div>}
-      </Row>
-    </div>
-  );
-};
+//       <Row gutter={16}>
+//         {selectedHosting === "self" ? <div></div> : <div></div>}
+//       </Row>
+//     </div>
+//   );
+// };
 
 // import { useEffect, useState } from "react";
 // import { Typography } from "antd";
@@ -69,7 +69,7 @@ const HostingPage = () => {
       </Title>
       {/* <DomainConatainer style={{ marginBottom: "10px" }} /> */}
 
-      <HostingTab />
+      <HostingTab setMode={setMode} />
       <div className={styles.domain_page_outlet}>
         <Outlet />
       </div>

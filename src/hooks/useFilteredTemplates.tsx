@@ -50,7 +50,7 @@ export const useFilteredTemplates = () => {
 export const useWebCreateInial = () => {
   const { websites } = useSelector((state: RootStoreState) => state.user);
 
-  const { domain, template, hosting } = useSelector(
+  const { domain, template } = useSelector(
     (state: RootStoreState) => state.flow
   );
 
