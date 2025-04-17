@@ -5,26 +5,36 @@ import {
   SearchOutlined,
 } from "@ant-design/icons";
 import { Typography, message } from "antd";
-// import { useTranslation } from "react-i18next";
 import styles from "./PurchaseDomainPage.module.css";
 import { useState } from "react";
-// import { useLocation, useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { removeCredits } from "../../../../redux/Slices/UserSlice";
+import { MdWifiProtectedSetup } from "react-icons/md";
+import { RootStoreState } from "../../../../redux";
+import { setDomain } from "../../../../redux/Slices/FlowSlice";
+import { useNavigate } from "react-router";
+import { useTemplatePageContext } from "../../../../components/Layout/TemplatePageOutletLayout/TemplatePageOutletLayout";
+import {
+  TEMPLATE_MODULES,
+  useTemplatePageCtx,
+} from "../../../../context/TemplatePageCtxProvider";
 
 const { Text } = Typography;
 
 const endings = [".com", ".net", ".org", ".io", ".dev"];
 
+const creditAmount = 13;
+
 const PurchaseDomainPage = () => {
-  // const [domain, setDomain] = useState("");
+  const [fullDomain, setFullDomain] = useState("");
   const [searchName, setSearchName] = useState("");
   const [ending, setEnding] = useState(".com");
   const [loading, setLoading] = useState(false);
   const [availability, setAvailability] = useState<null | boolean>(null);
 
-  // const { t } = useTranslation();
-
-  // const navigate = useNavigate();
-  // const location = useLocation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { setTemplateModule } = useTemplatePageCtx();
 
   const handleSearch = () => {
     setLoading(true);
@@ -36,7 +46,20 @@ const PurchaseDomainPage = () => {
   };
 
   const handleBuy = () => {
-    message.success("Domain purchased with 13 credits 🎉");
+    dispatch(removeCredits(creditAmount));
+    message.success(`Domain purchased with ${13} credits`);
+    setAvailability(null);
+    setFullDomain(searchName + ending);
+    setSearchName("");
+    setEnding(".com");
+  };
+
+  const handleDomainSetup = () => {
+    message.success("Domain is setup successfully!");
+    dispatch(setDomain(fullDomain));
+    setFullDomain("");
+    navigate(`/template/${TEMPLATE_MODULES[1]}`);
+    setTemplateModule(TEMPLATE_MODULES[1]);
   };
 
   return (
@@ -54,7 +77,12 @@ const PurchaseDomainPage = () => {
           options={endings.map((ext) => ({ value: ext, label: ext }))}
           className={styles.select}
         />
-        <Button type="default" onClick={handleSearch} icon={<SearchOutlined />}>
+        <Button
+          disabled={searchName === "" ? true : false}
+          type="primary"
+          onClick={handleSearch}
+          icon={<SearchOutlined />}
+        >
           Search
         </Button>
       </div>
@@ -86,10 +114,24 @@ const PurchaseDomainPage = () => {
             showIcon
             icon={<CloseCircleOutlined />}
             message={
-              <Text strong>{`${searchName}${ending}`} is not available</Text>
+              <Text strong>
+                {`${searchName}${ending}`} is not available. Try again!
+              </Text>
             }
           />
         ))}
+
+      {fullDomain !== "" && (
+        <div style={{ textAlign: "center" }}>
+          <Button
+            type="primary"
+            onClick={handleDomainSetup}
+            icon={<MdWifiProtectedSetup />}
+          >
+            Setup domain
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

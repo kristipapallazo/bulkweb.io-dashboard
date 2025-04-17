@@ -11,6 +11,7 @@
   align-items: center;
   color: white;
   isolation: isolate;
+  min-height: 100vh;
 }
 
 .home::before {

@@ -4,7 +4,7 @@ import { useState } from "react";
 import styles from "../SelfHosted/SelfHosted.module.css";
 import { RootStoreState } from "../../../redux";
 import { useDispatch, useSelector } from "react-redux";
-import { updateCredits, updateWebsites } from "../../../redux/Slices/UserSlice";
+import { addWebsite, updateCredits } from "../../../redux/Slices/UserSlice";
 import { useWebCreateInial } from "../../../hooks/useFilteredTemplates";
 
 const OurServerHosted = () => {
@@ -28,11 +28,6 @@ const OurServerHosted = () => {
     // const storedCredits = localStorage.getItem("credits");
     // const currentCredits = storedCredits ? parseInt(storedCredits) : 0;
 
-    const { id } = website;
-
-    // Store deployed site info (optional)
-    const websites = JSON.parse(localStorage.getItem("websites") || "{}");
-
     if (credits < amountCredits) {
       message.error("Not enough credits to deploy.");
       return;
@@ -40,18 +35,9 @@ const OurServerHosted = () => {
 
     //update credits
     const updatedCredits = credits - amountCredits;
-    localStorage.setItem("credits", String(updatedCredits));
     dispatch(updateCredits(updatedCredits));
 
-    const finalWebsite: Website = {
-      ...website,
-      createdAt: String(Date.now()),
-    };
-
-    //update websites
-    const finalUpdatedWebsites = { ...websites, [id]: finalWebsite };
-    localStorage.setItem("websites", JSON.stringify(finalUpdatedWebsites));
-    dispatch(updateWebsites(finalUpdatedWebsites));
+    dispatch(addWebsite(website));
 
     setIsDeployed(true);
     setDeployUrl(website.url);

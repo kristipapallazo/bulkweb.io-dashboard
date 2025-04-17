@@ -28,7 +28,6 @@ const CardTemplate: React.FC<CardTemplateProps> = memo(
     //   (state: RootStoreState) => state.templates
     // );
     // const { template } = useSelector((state: RootStoreState) => state.flow);
-    console.log("isSelected :>> ", isSelected);
 
     const dispatch = useDispatch<AppDispatch>();
 

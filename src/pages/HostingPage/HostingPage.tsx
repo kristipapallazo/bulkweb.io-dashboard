@@ -4,6 +4,7 @@ import { Outlet, useLocation, useNavigate } from "react-router";
 // import DomainConatainer from "../../../components/Content/TemplateContentContainer/TemplateFilterContainer/DomainContainer/DomainConatainer";
 import styles from "../TemplatePage/DomainPage/DomainPage.module.css";
 import { HostingTab } from "../../components/Tabs/DomainTab/DomainTab";
+import { BurgerBttnContainer } from "../../components/Content/TemplateContentContainer/TemplateFilterContainer/TemplateFilterContainer";
 
 const { Title } = Typography;
 
@@ -64,6 +65,9 @@ const HostingPage = () => {
 
   return (
     <div className={styles.domain_page}>
+      <div className={styles.absolute_burgerBttn_wrapper}>
+        <BurgerBttnContainer />
+      </div>
       <Title level={3} className={styles.heading}>
         Hosting Setup
       </Title>

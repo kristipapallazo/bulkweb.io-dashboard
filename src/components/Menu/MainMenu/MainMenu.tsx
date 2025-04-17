@@ -3,9 +3,11 @@ import { IoBusinessSharp } from "react-icons/io5";
 import { GrTemplate } from "react-icons/gr";
 import { GiPriceTag } from "react-icons/gi";
 import MenuItem from "../MenuItem";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { IoIosContact } from "react-icons/io";
 import { MenuItemAntd } from "../../../declarations/antD";
+import { RootStoreState } from "../../../redux";
+import { useSelector } from "react-redux";
 
 // import classes from "./MainMenu.module.css";
 
@@ -29,16 +31,19 @@ const items: MenuItemAntd[] = [
     key: "template",
     label: <MenuItem id="template" label="Create web" />,
     icon: <GrTemplate />,
+    disabled: true,
   },
   {
     key: "my-websites",
     label: <MenuItem id="my-websites" label="my websites" />,
     icon: <GiPriceTag />,
+    disabled: true,
   },
   {
     key: "pricing",
     label: <MenuItem id="pricing" />,
     icon: <GiPriceTag />,
+    disabled: true,
   },
   {
     key: "contact",
@@ -58,12 +63,26 @@ const items: MenuItemAntd[] = [
 ];
 
 const MainMenu = () => {
+  const [menuItems, setMenuItems] = useState<MenuItemAntd>(items);
+
+  const isLogged = useSelector((state: RootStoreState) => state.user.user);
+  console.log("isLogged :>> ", isLogged);
+  useEffect(() => {
+    if (isLogged) {
+      const loggedInItems = menuItems.map((item: MenuItemAntd) => ({
+        ...item,
+        disabled: false,
+      }));
+      setMenuItems(loggedInItems);
+    }
+  }, [isLogged]);
+
   return (
     <Menu
       theme="light"
       mode="horizontal"
       // defaultSelectedKeys={["2"]}
-      items={items}
+      items={menuItems}
       style={{ flex: 1, minWidth: 0 }}
     />
   );

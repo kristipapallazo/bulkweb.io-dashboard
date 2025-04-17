@@ -10,6 +10,8 @@ import TranslatedInput from "../../../UI/AntD/Input/TranslatedInput";
 import styles from "./LoginCardContent.module.css";
 import { useNavigate } from "react-router";
 import { TEMPLATE_MODULES } from "../../../../context/TemplatePageCtxProvider";
+import { addCredits, setUser } from "../../../../redux/Slices/UserSlice";
+import { useDispatch } from "react-redux";
 
 interface LoginCardTemplateProps {
   inputItems: InputItem[];
@@ -70,6 +72,7 @@ const LoginCardContent: FC<LoginCardTemplateProps> = ({
   const { t } = useTranslation();
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const alt = `${type}-profile-img`;
   const src = type === "login" ? ProfileImg : ProfileImg1;
@@ -110,16 +113,9 @@ const LoginCardContent: FC<LoginCardTemplateProps> = ({
   const handleLogin = ({ email, password }: OnFinishLogin) => {
     try {
       const loginItems = localStorage.getItem("loginItems"); // could be null or JSON array
-      let loginItemsProcessed: LocalStorageLoginItemDict | null = null;
-
-      if (loginItems) {
-        loginItemsProcessed = JSON.parse(loginItems);
-      } else {
-        //go to register
-        handleCardChange();
-        message.error("User not exist! Please register!");
-        return;
-      }
+      let loginItemsProcessed: LocalStorageLoginItemDict = JSON.parse(
+        loginItems!
+      );
 
       // Check if the user exists
       const userExists = loginItemsProcessed![email];
@@ -161,7 +157,10 @@ const LoginCardContent: FC<LoginCardTemplateProps> = ({
     localStorage.setItem("loginItems", JSON.stringify(loginItemsProcessed));
     localStorage.setItem("login", email);
 
-    navigate(`../template/${TEMPLATE_MODULES[0]}`);
+    dispatch(setUser(email));
+    dispatch(addCredits(2000));
+
+    navigate(`/template/${TEMPLATE_MODULES[0]}`);
   };
 
   const onFinish = (values: OnFinishLogin) => {

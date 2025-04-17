@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Outlet, useOutletContext } from "react-router";
-import styles from "./TemplatePageLayout.module.css";
+import styles from "./TemplatePageOutletLayout.module.css";
 
 interface Props<D = any> {
   context: D;

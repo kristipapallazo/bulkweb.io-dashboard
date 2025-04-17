@@ -4,15 +4,43 @@ import MainContentContainer from "../../components/Content/MainContentContainer/
 // import Footer from "../../components/Footer/Footer";
 // import { useState } from "react";
 import classes from "./DashboardPage.module.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { getLocalStorageItem } from "../../utils/utils";
+import {
+  setUser,
+  updateCredits,
+  updateWebsites,
+} from "../../redux/Slices/UserSlice";
+
+let initial = true;
 
 const Dashboard = () => {
-  useEffect(() => {}, []);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (initial) {
+      const init = () => {
+        //update items from localStorage
+        const login = getLocalStorageItem("login");
+        const loginItems = getLocalStorageItem("loginItems") || [];
+        const credits = getLocalStorageItem("credits");
+        const websites = getLocalStorageItem("websites") || [];
+
+        //update redux state
+        if (login) dispatch(setUser(login === "undefined" ? undefined : login));
+        dispatch(updateCredits(credits));
+        dispatch(updateWebsites(websites as AllWebsites));
+      };
+      init();
+      initial = false;
+    }
+  }, []);
+
   return (
     <Layout className={classes.dashboardPage} style={{ height: "100vh" }}>
       <MainHeader />
       <MainContentContainer />
-      {/* {showFooter && <Footer />} */}
     </Layout>
   );
 };

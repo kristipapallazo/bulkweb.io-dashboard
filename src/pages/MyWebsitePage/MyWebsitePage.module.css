@@ -1,0 +1,56 @@
+.container {
+  padding: 2rem;
+  background: linear-gradient(
+    to bottom,
+    var(--light-primary),
+    var(--accent-color)
+  );
+  min-height: 100vh;
+}
+
+.title {
+  color: var(--dark-primary);
+  border-bottom: 2px solid var(--divider-color);
+  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.list {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  overflow: auto;
+}
+
+.card {
+  background-color: white;
+  border: 1px solid var(--divider-color);
+  border-left: 5px solid var(--accent-color);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease;
+}
+
+.card:hover {
+  border-left-color: var(--dark-green);
+}
+
+.card h2 {
+  color: var(--accent-color);
+  margin-top: 0;
+}
+
+.card a {
+  color: var(--primary-green);
+  text-decoration: none;
+}
+
+.card a:hover {
+  text-decoration: underline;
+}
+
+.createdAt {
+  color: var(--sec-text);
+  font-size: 0.875rem;
+}

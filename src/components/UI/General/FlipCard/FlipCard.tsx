@@ -1,12 +1,4 @@
-import {
-  CSSProperties,
-  FC,
-  HTMLAttributes,
-  memo,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { CSSProperties, FC, HTMLAttributes, memo, useRef } from "react";
 import styles from "./FlipCard.module.css";
 
 interface CommonFlipCardProps<T = HTMLDivElement> {
@@ -34,32 +26,24 @@ const FlipCard: FC<FlipCardProps> = memo(
     const frontRef = useRef<HTMLDivElement>(null);
     const backRef = useRef<HTMLDivElement>(null);
 
-    const [height, setFinalHeight] = useState<number | undefined>(undefined);
+    // const [height, setFinalHeight] = useState<number | undefined>(undefined);
 
-    console.log("height :>> ", height);
+    // useEffect(() => {
+    //   const updateHeight = () => {
+    //     const frontHeight = frontRef.current?.offsetHeight || 0;
+    //     const backHeight = backRef.current?.offsetHeight || 0;
+    //     const maxHeight = Math.max(frontHeight, backHeight);
+    //     setFinalHeight(maxHeight);
+    //   };
 
-    useEffect(() => {
-      const updateHeight = () => {
-        console.log(
-          "frontRef.current, backRef.current, containerRef   :>> ",
-          frontRef.current,
-          backRef.current,
-          containerRef
-        );
-        const frontHeight = frontRef.current?.offsetHeight || 0;
-        const backHeight = backRef.current?.offsetHeight || 0;
-        const maxHeight = Math.max(frontHeight, backHeight);
-        setFinalHeight(maxHeight);
-      };
+    //   const resizeObserver = new ResizeObserver(updateHeight);
+    //   if (frontRef.current) resizeObserver.observe(frontRef.current);
+    //   if (backRef.current) resizeObserver.observe(backRef.current);
 
-      const resizeObserver = new ResizeObserver(updateHeight);
-      if (frontRef.current) resizeObserver.observe(frontRef.current);
-      if (backRef.current) resizeObserver.observe(backRef.current);
+    //   updateHeight(); // Initial sync
 
-      updateHeight(); // Initial sync
-
-      return () => resizeObserver.disconnect();
-    }, [children]);
+    //   return () => resizeObserver.disconnect();
+    // }, [children]);
 
     const style: CSSProperties = { width, height: defaultHeight };
 

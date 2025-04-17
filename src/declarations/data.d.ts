@@ -99,22 +99,21 @@ interface WebsiteCreationFlow {
 }
 type WebsiteId = number;
 interface Website {
-  id: number;
+  id?: number;
   domain: string;
   template: TemplateId;
   url: string;
   hosting?: HostingPref;
   createdAt?: string;
 }
-interface Websites {
-  [websitesId: WebsiteId]: Website;
-}
+type AllWebsites = Website[];
+// interface Websites {
+//   [websitesId: WebsiteId]: Website;
+// }
 interface UserState {
-  user: {
-    email: string;
-    password: string;
-  };
-  websites: Websites;
+  user: string | undefined;
+  websites: AllWebsites;
   credits: number;
   purchaseHistory: number[]; // TemplateId[]
+  burgerBttnIsOpen: boolean;
 }

@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Outlet } from "react-router";
 import classes from "./MainContent.module.css";
-import { FC } from "react";
 
 export const ChangeLangBttn = () => {
   const { i18n } = useTranslation();
@@ -15,10 +14,7 @@ export const ChangeLangBttn = () => {
   return <button onClick={() => handleLangChange("en")}>English</button>;
 };
 
-interface Props {
-  setShowFooter: SetStateFn<boolean>;
-}
-const MainContent: FC<Props> = () => {
+const MainContent = () => {
   return (
     <div id="main-content-outlet" className={classes.mainContentOutlet}>
       <Outlet />

@@ -56,16 +56,3 @@
   border-color: var(--primary-color) !important;
   box-shadow: 0 0 0 2px rgba(255, 193, 7, 0.2) !important;
 }
-
-.button {
-  background-color: var(--primary-green) !important;
-  border: none;
-  height: 40px;
-  font-weight: 500;
-  font-size: 1rem;
-  border-radius: 0.75rem;
-}
-
-.button:hover {
-  background-color: var(--dark-green) !important;
-}

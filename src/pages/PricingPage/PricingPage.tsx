@@ -4,6 +4,8 @@ import { DollarOutlined } from "@ant-design/icons";
 import PaymentModal from "../../components/Modal/PaymentModal";
 import styles from "./PricingPage.module.css";
 import { MainTitle } from "../../components/Content/ContactSection/ContactTitle";
+import { addCredits } from "../../redux/Slices/UserSlice";
+import { useDispatch } from "react-redux";
 
 const { Title, Text } = Typography;
 
@@ -51,24 +53,19 @@ const CreditHistory: FC<CreditHistoryProps> = ({ creditHistory }) => {
 };
 
 const PricingPage: React.FC = () => {
-  const [credits, setCredits] = useState<number>(0);
   const [creditHistory, setCreditHistory] = useState<
     { date: string; amount: number }[]
   >([]);
   const [paymentModalIsOpen, setPaymentModalIsOpen] = useState<boolean>(false);
   const [creditsToBuy, setCreditsToBuy] = useState<number>(0);
   const [amountToBuy, setAmountToBuy] = useState<number>(0);
-
-  /* Todo: remove later */
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const storedCredits = localStorage.getItem("credits");
     const history = localStorage.getItem("creditHistory");
-    if (storedCredits) setCredits(parseInt(storedCredits));
     if (history) setCreditHistory(JSON.parse(history));
   }, []);
 
-  console.log("credits :>> ", credits);
   const handleBuy = (pckg: CreditPackage) => {
     const { credits, price } = pckg;
 
@@ -98,6 +95,11 @@ const PricingPage: React.FC = () => {
   };
   const handlePay = () => {
     console.log("hanldepay");
+    dispatch(addCredits(creditsToBuy));
+    setCreditHistory([]);
+    setPaymentModalIsOpen(false);
+    setCreditsToBuy(0);
+    setAmountToBuy(0);
   };
 
   return (
@@ -110,7 +112,12 @@ const PricingPage: React.FC = () => {
           onPay={handlePay}
           creditsToBuy={creditsToBuy}
           amount={amountToBuy}
-        />
+        >
+          <p>
+            You're about to purchase <strong>{creditsToBuy} credits</strong> for{" "}
+            <strong>${amountToBuy}</strong>.
+          </p>
+        </PaymentModal>
       )}
 
       <div
@@ -123,17 +130,33 @@ const PricingPage: React.FC = () => {
       >
         <Text style={{ fontSize: "1.2rem", color: "var(--primary-text)" }}>
           Credits to buy:
-          <span style={{ color: "var(--primary-color)", fontWeight: 600 }}>
+          <span
+            style={{
+              marginLeft: "5px",
+              color: "var(--primary-color)",
+              fontWeight: 600,
+            }}
+          >
             {creditsToBuy} credits
           </span>
         </Text>
         <Text style={{ fontSize: "1.2rem", color: "var(--primary-text)" }}>
           Purchased amount:
-          <span style={{ color: "var(--primary-color)", fontWeight: 600 }}>
+          <span
+            style={{
+              marginLeft: "5px",
+              color: "var(--primary-color)",
+              fontWeight: 600,
+            }}
+          >
             {amountToBuy}$
           </span>
         </Text>
-        <Button type="primary" onClick={handlePaymentModalOpen}>
+        <Button
+          disabled={creditsToBuy === 0}
+          type="primary"
+          onClick={handlePaymentModalOpen}
+        >
           Pay now
         </Button>
       </div>

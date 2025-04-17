@@ -1,14 +1,17 @@
-import React, { useCallback, useState } from "react";
+import React, { Children, ReactNode, useCallback, useState } from "react";
 import { Modal, Radio, RadioChangeEvent, Button } from "antd";
 import { DollarOutlined } from "@ant-design/icons";
 import TranslatedInput from "../UI/AntD/Input/TranslatedInput";
+import { useSelector } from "react-redux";
+import { RootStoreState } from "../../redux";
 
 interface PaymentModalProps {
   open: boolean;
   onClose: () => void;
-  onPay: (method: PaymentMethod) => void;
+  onPay: () => void;
   amount: number;
   creditsToBuy: number;
+  children?: ReactNode;
 }
 
 const CardForm = () => (
@@ -60,12 +63,11 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
   onClose,
   onPay,
   amount,
-  creditsToBuy,
+  children,
 }) => {
   const handleMethodChange = (e: RadioChangeEvent) => {
     setMethod(e.target.value);
   };
-  //   const credits = useSelector((state: RootStoreState) => state.user.credits);
 
   const [method, setMethod] = useState<PaymentMethod>("credit_card");
 
@@ -82,6 +84,10 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
     }
   }, [method]);
 
+  const handlePay = (method: PaymentMethod) => {
+    onPay();
+  };
+
   return (
     <Modal
       title="Complete Your Payment"
@@ -96,22 +102,13 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
           key="pay"
           type="primary"
           icon={<DollarOutlined />}
-          onClick={() => onPay(method)}
-          style={
-            {
-              // backgroundColor: "var(--primary-green)",
-              // borderColor: "var(--dark-green)",
-            }
-          }
+          onClick={() => handlePay(method)}
         >
           Pay ${amount} with {method.charAt(0).toUpperCase() + method.slice(1)}
         </Button>,
       ]}
     >
-      <p>
-        You're about to purchase <strong>{creditsToBuy} credits</strong> for{" "}
-        <strong>${amount}</strong>.
-      </p>
+      {children}
       <Radio.Group onChange={handleMethodChange} value={method}>
         <Radio value="credit_card">💳 Credit Card</Radio>
         <Radio value="bank_transfer">🏦 Bank Transfer</Radio>

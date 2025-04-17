@@ -14,11 +14,10 @@ const initialPagination = {
 };
 
 const initialState: WebsiteCreationFlow = {
-  domain: null,
+  domain: "test.com",
   niche: "all-niches",
   category: null,
-  // template: null,
-  template: null,
+  template: 1,
   hosting: null,
   payment: null,
   selectedTemplates: [],
