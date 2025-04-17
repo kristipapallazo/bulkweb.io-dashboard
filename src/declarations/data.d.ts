@@ -115,6 +115,7 @@ interface UserState {
   user: string | undefined;
   websites: AllWebsites;
   credits: number;
+  lang: Lang;
   purchaseHistory: number[]; // TemplateId[]
   burgerBttnIsOpen: boolean;
 }

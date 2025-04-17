@@ -3,10 +3,11 @@ import { updateLocalStorageItem } from "../../utils/utils";
 
 const initialState: UserState = {
   user: undefined,
-  credits: 20000,
+  credits: 0,
   websites: [],
   purchaseHistory: [],
   burgerBttnIsOpen: false,
+  lang: "GB_ENG",
 };
 
 const userSlice = createSlice({
@@ -54,6 +55,9 @@ const userSlice = createSlice({
 
       state.websites = websites;
     },
+    setLang: (state, action: PayloadAction<Lang>) => {
+      state.lang = action.payload;
+    },
     addWebsite: (state, action: PayloadAction<Website>) => {
       const website = action.payload;
       const id = state.websites.length;
@@ -70,6 +74,7 @@ const userSlice = createSlice({
 });
 
 export const {
+  setLang,
   setUser,
   updateWebsites,
   addWebsite,

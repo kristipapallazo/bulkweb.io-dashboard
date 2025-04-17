@@ -157,10 +157,9 @@ const LoginCardContent: FC<LoginCardTemplateProps> = ({
     localStorage.setItem("loginItems", JSON.stringify(loginItemsProcessed));
     localStorage.setItem("login", email);
 
-    dispatch(setUser(email));
-    dispatch(addCredits(2000));
-
     navigate(`/template/${TEMPLATE_MODULES[0]}`);
+    dispatch(addCredits(2000));
+    dispatch(setUser(email));
   };
 
   const onFinish = (values: OnFinishLogin) => {

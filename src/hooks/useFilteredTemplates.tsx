@@ -74,7 +74,7 @@ export const useFilteredTemplates = () => {
   return filtered;
 };
 
-export const useWebCreateInial = () => {
+export const useWebCreateInial = (hostType: HostingPref) => {
   const { websites } = useSelector((state: RootStoreState) => state.user);
 
   const { domain, template } = useSelector(
@@ -88,7 +88,7 @@ export const useWebCreateInial = () => {
     const webId = Object.keys(websites).length + 1;
 
     if (domain && (template || template === 0)) {
-      website = { id: webId, domain, template, url: webUrl };
+      website = { id: webId, domain, template, url: webUrl, hosting: hostType };
     }
     return website;
   }, [domain, template, websites]);

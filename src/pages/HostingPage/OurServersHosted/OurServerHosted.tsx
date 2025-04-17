@@ -6,6 +6,7 @@ import { RootStoreState } from "../../../redux";
 import { useDispatch, useSelector } from "react-redux";
 import { addWebsite, updateCredits } from "../../../redux/Slices/UserSlice";
 import { useWebCreateInial } from "../../../hooks/useFilteredTemplates";
+import { NavLink } from "react-router";
 
 const OurServerHosted = () => {
   const [isDeployed, setIsDeployed] = useState<boolean>(false);
@@ -17,7 +18,7 @@ const OurServerHosted = () => {
   const { credits } = useSelector((state: RootStoreState) => state.user);
 
   const dispatch = useDispatch();
-  const website = useWebCreateInial();
+  const website = useWebCreateInial("bulkweb_hosted");
 
   const deployNow = (
     website: Website,
@@ -27,6 +28,8 @@ const OurServerHosted = () => {
     // Simulate credit deduction
     // const storedCredits = localStorage.getItem("credits");
     // const currentCredits = storedCredits ? parseInt(storedCredits) : 0;
+
+    console.log("website :>> ", website);
 
     if (credits < amountCredits) {
       message.error("Not enough credits to deploy.");
@@ -43,35 +46,47 @@ const OurServerHosted = () => {
     setDeployUrl(website.url);
     message.success("Website deployed successfully!");
   };
-  console.log("website :>> ", website);
+  console.log("website, isDeployed :>> ", website, isDeployed);
 
   return (
     <div className={styles.self_hosted_cont}>
-      <p className={styles.label}>
-        We will host your site for you. Uses{" "}
-        <strong>{amountCredits}$ credits</strong>. You’ll get a live link once
-        deployed.
-      </p>
+      {!isDeployed && (
+        <p className={styles.label}>
+          We will host your site for you. Uses{" "}
+          <strong>{amountCredits}$ credits</strong>. You’ll get a live link once
+          deployed.
+        </p>
+      )}
       {deployUrl && (
         <p className={styles.label}>
           Website is created successfully.{" "}
-          <span>
+          <span style={{ marginRight: "10px" }}>
             <span>Url: </span>
             {deployUrl}
           </span>
+          <Button type="primary">
+            <NavLink
+              // onClick={handlePurchaseTemplateRelocation}
+              to={"/my-websites"}
+            >
+              Go to websites
+            </NavLink>
+          </Button>
         </p>
       )}
       <div className={styles.bttn_cont}>
-        <Button
-          type="primary"
-          icon={<CloudUploadOutlined />}
-          onClick={() => {
-            deployNow(website!, credits, amountCredits);
-          }}
-          disabled={website ? false : true}
-        >
-          {isDeployed ? "Deployed ✅" : "Deploy Now"}
-        </Button>
+        {!isDeployed && (
+          <Button
+            type="primary"
+            icon={<CloudUploadOutlined />}
+            onClick={() => {
+              deployNow(website!, credits, amountCredits);
+            }}
+            disabled={website ? false : isDeployed ? true : false}
+          >
+            {isDeployed ? "Deployed ✅" : "Deploy Now"}
+          </Button>
+        )}{" "}
       </div>
     </div>
   );

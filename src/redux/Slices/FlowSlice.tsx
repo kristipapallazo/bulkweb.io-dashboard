@@ -35,7 +35,7 @@ const flowSlice = createSlice({
   name: "flow",
   initialState,
   reducers: {
-    setDomain: (state, action: PayloadAction<string>) => {
+    setDomain: (state, action: PayloadAction<string | null>) => {
       state.domain = action.payload;
     },
     setNiche: (state, action: PayloadAction<NicheId>) => {

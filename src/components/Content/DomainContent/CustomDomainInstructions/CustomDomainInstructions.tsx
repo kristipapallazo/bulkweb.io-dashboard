@@ -85,7 +85,7 @@ const CustomDomainInstructions: FC<CustomDomainInstructionsProps> = (props) => {
               type="error"
               showIcon
               icon={<ExclamationCircleOutlined />}
-              message="We couldn't verify your domain yet. Please check your DNS settings and try again."
+              message="Simulated error: We couldn't verify your domain yet. Please check your DNS settings and try again. Verify again!"
             />
           ))}
       </div>

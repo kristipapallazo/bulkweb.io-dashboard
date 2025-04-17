@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import { Card, Tag, Button, message } from "antd";
 import ImageNotFound from "../../../../../assets/image-not-found.jpg";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,6 +24,7 @@ interface CardTemplateProps {
 const CardTemplate: React.FC<CardTemplateProps> = memo(
   ({ template, isSelected, isFavorite, isMyTemplate, id }) => {
     const { name, image = ImageNotFound, niche, categ, price } = template;
+    const [isBought, setIsBought] = useState(false);
 
     // const [inCart, setInCart] = useState(false);
     // const { myTemplates } = useSelector(
@@ -60,6 +61,7 @@ const CardTemplate: React.FC<CardTemplateProps> = memo(
         dispatch(removeCredits(creditAmounts));
         // dispatch(addMyTemplates(id));
         // setInCart((prev) => !prev);
+        setIsBought((prev) => !prev);
         message.success("Template was bought successfully!");
       }
     };
@@ -112,11 +114,12 @@ const CardTemplate: React.FC<CardTemplateProps> = memo(
               type={isSelected ? "primary" : "default"}
               onClick={handleTemplateSelect}
               className={classes.cartButton}
+              disabled={!isBought}
             >
-              {isSelected ? "Setup" : "Un setup"}
+              {isSelected ? "Configured" : "Unconfigured"}
             </Button>
 
-            {!isMyTemplate && (
+            {!isBought && (
               <Button
                 type={isMyTemplate ? "primary" : "default"}
                 onClick={() => handleBuy(price)}
