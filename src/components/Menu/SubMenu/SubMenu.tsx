@@ -1,6 +1,6 @@
 import { Menu } from "antd";
 import MenuItem from "../MenuItem";
-import { MdOutlineFavorite, MdWorkHistory } from "react-icons/md";
+import { MdWorkHistory } from "react-icons/md";
 import { HiTemplate } from "react-icons/hi";
 import { MenuItemAntd } from "../../../declarations/antD";
 import { useTemplatePageCtx } from "../../../context/TemplatePageCtxProvider";
@@ -24,11 +24,11 @@ const items: MenuItemAntd[] = [
     label: <MenuItem id="hosting" />,
     icon: <GrDeploy />,
   },
-  {
-    key: "favorites",
-    label: <MenuItem id="favorites" />,
-    icon: <MdOutlineFavorite />,
-  },
+  // {
+  //   key: "favorites",
+  //   label: <MenuItem id="favorites" />,
+  //   icon: <MdOutlineFavorite />,
+  // },
   {
     key: "history",
     label: <MenuItem id="history" />,

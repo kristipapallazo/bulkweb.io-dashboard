@@ -87,6 +87,7 @@ interface WebsiteCreationFlow {
   payment: PaymentInfo | null;
   selectedTemplates: TemplateAllIds;
   searchQuery: SearchQuery;
+  templateType: TemplateFilterTag;
   pagination: {
     currentPage: number;
     pageSize: number;

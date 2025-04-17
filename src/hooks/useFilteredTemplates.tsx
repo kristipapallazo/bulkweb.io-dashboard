@@ -3,22 +3,39 @@ import { useSelector } from "react-redux";
 import { RootStoreState } from "../redux";
 
 export const useFilteredTemplates = () => {
-  const { templateById, templateAllIds } = useSelector(
+  const { templateById, templateAllIds, myTemplates, favorites } = useSelector(
     (state: RootStoreState) => state.templates
   );
 
   const {
+    templateType,
     niche,
     category,
     searchQuery,
     pagination: { currentPage, pageSize },
   } = useSelector((state: RootStoreState) => state.flow);
 
+  console.log(
+    "favorites, myTemplates, templateType xxxx :>> ",
+    favorites,
+    myTemplates,
+    templateType
+  );
   const filtered = useMemo(() => {
-    let result = templateAllIds;
+    let result =
+      templateType === "All templates"
+        ? templateAllIds
+        : templateType === "Favorites"
+        ? favorites
+        : myTemplates;
 
     if (niche === "all-niches") {
-      result = templateAllIds;
+      result =
+        templateType === "All templates"
+          ? templateAllIds
+          : templateType === "Favorites"
+          ? favorites
+          : myTemplates;
     } else {
       result = result.filter((t) => templateById[t].niche === niche);
     }
@@ -42,7 +59,17 @@ export const useFilteredTemplates = () => {
       templates: paginated,
       total: result.length,
     };
-  }, [templateAllIds, niche, category, searchQuery, currentPage, pageSize]);
+  }, [
+    templateAllIds,
+    favorites,
+    myTemplates,
+    niche,
+    category,
+    searchQuery,
+    currentPage,
+    pageSize,
+    templateType,
+  ]);
 
   return filtered;
 };

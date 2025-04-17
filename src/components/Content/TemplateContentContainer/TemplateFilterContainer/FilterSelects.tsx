@@ -32,6 +32,7 @@ const NicheSelect = () => {
       width={200}
       value={niche}
       onChange={handleChange}
+      style={{ width: 200, marginRight: "15px" }}
     />
   );
 };

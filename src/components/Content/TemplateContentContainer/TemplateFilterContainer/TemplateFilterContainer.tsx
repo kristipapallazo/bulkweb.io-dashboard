@@ -1,14 +1,16 @@
-import { FC } from "react";
 import TemplatesPagination from "../../../Pagination/TemplatesPagination";
 import { CategSelect, NicheSelect } from "./FilterSelects";
 import TemplateSearch from "./TemplateSearch";
 import DomainConatainer from "./DomainContainer/DomainConatainer";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootStoreState } from "../../../../redux";
-import { setPaginationFilter } from "../../../../redux/Slices/FlowSlice";
+import {
+  setPaginationFilter,
+  setTemplateType,
+} from "../../../../redux/Slices/FlowSlice";
 import BurgerBttn from "../../../UI/General/Button/BurgerBttn";
 import { handleBurgerBttnClick } from "../../../../redux/Slices/UserSlice";
-import { Popover, Tag } from "antd";
+import { Popover } from "antd";
 
 import classes from "./TemplateFilterContainer.module.css";
 
@@ -48,17 +50,44 @@ export const BurgerBttnContainer = () => {
 const FrstRow = () => {
   return (
     <div className={classes.frstRow}>
-      <NicheSelect />
-      <CategSelect />
+      <div>
+        <NicheSelect />
+        <CategSelect />
+      </div>
       <BurgerBttnContainer />
     </div>
   );
 };
 
-interface SecRowProps {
-  type?: "favorites";
-}
-const SecRow: FC<SecRowProps> = ({ type }) => {
+import { Select } from "antd";
+
+const { Option } = Select;
+
+type TemplateFilterTag = "All templates" | "Favorites" | "My templates";
+
+const TemplateFilterSelect = () => {
+  const dispatach = useDispatch();
+
+  const value = useSelector((state: RootStoreState) => state.flow.templateType);
+
+  const handleChange = (value: TemplateFilterTag) => {
+    dispatach(setTemplateType(value));
+  };
+
+  return (
+    <Select<TemplateFilterTag>
+      value={value}
+      onChange={handleChange}
+      style={{ width: 200 }}
+    >
+      <Option value="All templates">All templates</Option>
+      <Option value="Favorites">Favorites</Option>
+      <Option value="My templates">My templates</Option>
+    </Select>
+  );
+};
+
+const SecRow = () => {
   const {
     pagination: { currentPage, pageSize },
   } = useSelector((state: RootStoreState) => state.flow);
@@ -71,27 +100,16 @@ const SecRow: FC<SecRowProps> = ({ type }) => {
   };
   return (
     <div className={classes.secRow}>
-      <TemplateSearch />
+      <div>
+        <TemplateSearch />
+        <TemplateFilterSelect />
+      </div>
 
-      {!type ? (
-        <TemplatesPagination
-          current={currentPage}
-          pageSize={pageSize}
-          onChange={onChange}
-        />
-      ) : (
-        <Tag
-          color="var(--primary-color)"
-          style={{
-            width: "100px",
-            color: "var(--primary-text)",
-            textAlign: "center",
-            fontSize: "larger",
-          }}
-        >
-          Favorites
-        </Tag>
-      )}
+      <TemplatesPagination
+        current={currentPage}
+        pageSize={pageSize}
+        onChange={onChange}
+      />
     </div>
   );
 };
@@ -101,14 +119,6 @@ const TemplateFilterContainer = () => {
     <div className={classes.cont}>
       <FrstRow />
       <SecRow />
-    </div>
-  );
-};
-export const TemplateFilterContainerForFavorites = () => {
-  return (
-    <div className={classes.cont}>
-      <FrstRow />
-      <SecRow type="favorites" />
     </div>
   );
 };

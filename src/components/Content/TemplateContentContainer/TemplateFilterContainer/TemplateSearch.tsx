@@ -12,8 +12,8 @@ const TemplateSearch = () => {
 
   return (
     <DebouncedSearch
-      width={250}
-      style={{ flexShrink: 1 }}
+      width={200}
+      style={{ flexShrink: 1, marginRight: "15px" }}
       placeholder="Search by label"
       prefix={<CiSearch className=".icon" />}
       value={searchQuery}

@@ -18,9 +18,6 @@ const TemplatePage = lazy(() => import("../pages/TemplatePage/TemplatePage"));
 const DomainPage = lazy(
   () => import("../pages/TemplatePage/DomainPage/DomainPage")
 );
-const FavoritesPage = lazy(
-  () => import("../pages/TemplatePage/FavoritesPage/FavoritesPage")
-);
 const AllTemplatesPage = lazy(
   () => import("../pages/TemplatePage/AllTemplates/AllTemplatesPage")
 );
@@ -44,6 +41,8 @@ const HostingPage = lazy(() => import("../pages/HostingPage/HostingPage"));
 const MyWebsitePage = lazy(
   () => import("../pages/MyWebsitePage/MyWebsitePage")
 );
+
+const HistoryPage = lazy(() => import("../pages/HIstoryPage/HistoryPage"));
 
 interface RouterProviderProps {
   children?: ReactNode;
@@ -69,8 +68,8 @@ const routeConfigs: RouteObject[] = [
         ],
       },
       { path: "purchase-templates", Component: AllTemplatesPage },
-      { path: "favorites", Component: FavoritesPage },
-      { path: "history", Component: DomainPage },
+      // { path: "favorites", Component: FavoritesPage },
+      { path: "history", Component: HistoryPage },
       {
         path: "hosting",
         Component: HostingPage,

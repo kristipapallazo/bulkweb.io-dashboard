@@ -5,7 +5,9 @@ import {
   ReactNode,
   useEffect,
 } from "react";
+import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
+import { resetFlow } from "../redux/Slices/FlowSlice";
 
 export const TEMPLATE_MODULES: TemplateModules = [
   "domain-setup",
@@ -42,8 +44,13 @@ export const TemplatePageCtxProvider = ({ children }: Props) => {
     TEMPLATE_MODULES[0]
   );
 
+  const dispatach = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+
+  useEffect(() => {
+    dispatach(resetFlow());
+  }, [templateModule]);
 
   useEffect(() => {
     const currPath = location.pathname;

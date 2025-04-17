@@ -11,17 +11,19 @@ interface GridTemplatesProps {
 }
 
 const GridTemplates: FC<GridTemplatesProps> = ({ templates }) => {
-  const { templateById, favorites } = useSelector(
+  const { templateById, favorites, myTemplates } = useSelector(
     (state: RootStoreState) => state.templates
   );
   const { template: selectedTemplate } = useSelector(
     (state: RootStoreState) => state.flow
   );
 
-  console.log("selectedTemplate :>> ", selectedTemplate);
+  console.log("favorites :>> ", favorites);
   const items = templates.map((id) => {
     const isFavorite = favorites.includes(id);
+    const isMyTemplate = myTemplates.includes(id);
     const template = templateById[id];
+
     return (
       <CardTemplate
         key={id}
@@ -29,6 +31,7 @@ const GridTemplates: FC<GridTemplatesProps> = ({ templates }) => {
         template={template}
         isSelected={selectedTemplate === id ? true : false}
         isFavorite={isFavorite}
+        isMyTemplate={isMyTemplate}
       />
     );
   });

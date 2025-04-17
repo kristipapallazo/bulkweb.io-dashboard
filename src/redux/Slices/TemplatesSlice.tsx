@@ -30,20 +30,36 @@ const templatesSlice = createSlice({
     addFavorite: (state, action: PayloadAction<number>) => {
       if (!state.favorites.includes(action.payload)) {
         state.favorites.push(action.payload);
+        localStorage.setItem("favorites", JSON.stringify(state.favorites));
       }
     },
     removeFavorite: (state, action: PayloadAction<number>) => {
       state.favorites = state.favorites.filter((id) => id !== action.payload);
+      localStorage.setItem("favorites", JSON.stringify(state.favorites));
+    },
+    updateFavorites: (state, action: PayloadAction<TemplateAllIds>) => {
+      const updatedFavorites = action.payload;
+      console.log("updatedFavorites :>> ", updatedFavorites);
+      state.favorites = updatedFavorites;
+      console.log("state.favorites :>> ", state.favorites);
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
     },
     addMyTemplates: (state, action: PayloadAction<number>) => {
       if (!state.myTemplates.includes(action.payload)) {
         state.myTemplates.push(action.payload);
+        localStorage.setItem("myTemplates", JSON.stringify(state.myTemplates));
       }
     },
     removeMyTemplates: (state, action: PayloadAction<number>) => {
       state.myTemplates = state.myTemplates.filter(
         (id) => id !== action.payload
       );
+      localStorage.setItem("myTemplates", JSON.stringify(state.myTemplates));
+    },
+    updateMyTemplates: (state, action: PayloadAction<TemplateAllIds>) => {
+      const updatedFavorites = action.payload;
+      state.favorites = updatedFavorites;
+      localStorage.setItem("myTemplates", JSON.stringify(updatedFavorites));
     },
   },
 });
@@ -54,6 +70,8 @@ export const {
   removeFavorite,
   addMyTemplates,
   removeMyTemplates,
+  updateFavorites,
+  updateMyTemplates,
 } = templatesSlice.actions;
 
 export default templatesSlice.reducer;

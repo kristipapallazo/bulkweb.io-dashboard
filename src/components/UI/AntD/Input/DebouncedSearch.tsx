@@ -9,7 +9,7 @@ interface Props extends InputProps {
   handleChange: (value: string) => void;
 }
 
-const defaultInputWidth = 200;
+const defaultInputWidth = 120;
 
 const DebouncedSearch: FC<Props> = ({
   style,

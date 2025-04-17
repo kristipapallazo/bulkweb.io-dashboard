@@ -14,14 +14,15 @@ const initialPagination = {
 };
 
 const initialState: WebsiteCreationFlow = {
-  domain: "test.com",
+  domain: null,
   niche: "all-niches",
   category: null,
-  template: 1,
+  template: null,
   hosting: null,
   payment: null,
   selectedTemplates: [],
   searchQuery: "",
+  templateType: "All templates",
   pagination: initialPagination,
   nicheAllIds: initialNiches,
   nicheById: NICHES_BY_ID,
@@ -70,6 +71,9 @@ const flowSlice = createSlice({
     setSearchQuery: (state, action: PayloadAction<SearchQuery>) => {
       state.searchQuery = action.payload;
     },
+    setTemplateType: (state, action: PayloadAction<TemplateFilterTag>) => {
+      state.templateType = action.payload;
+    },
 
     setTemplate: (state, action: PayloadAction<TemplateId | null>) => {
       const val = action.payload;
@@ -89,7 +93,11 @@ const flowSlice = createSlice({
     setPayment: (state, action: PayloadAction<PaymentInfo>) => {
       state.payment = action.payload;
     },
-    resetFlow: () => initialState,
+    resetFlow: (state) => {
+      state.templateType = initialState.templateType;
+      state.niche = initialState.niche;
+      state.category = initialState.category;
+    },
   },
 });
 
@@ -100,6 +108,7 @@ export const {
   setTemplate,
   setHosting,
   setPayment,
+  setTemplateType,
   resetFlow,
   setSearchQuery,
   setPaginationFilter,

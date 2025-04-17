@@ -1,8 +1,8 @@
-import React, { memo, useState } from "react";
+import React, { memo } from "react";
 import { Card, Tag, Button, message } from "antd";
 import ImageNotFound from "../../../../../assets/image-not-found.jpg";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../../../redux";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootStoreState } from "../../../../../redux";
 
 import classes from "./CardTemplate.module.css";
 import { FaHeart, FaHeartBroken } from "react-icons/fa";
@@ -11,23 +11,25 @@ import {
   removeFavorite,
 } from "../../../../../redux/Slices/TemplatesSlice";
 import { setTemplate } from "../../../../../redux/Slices/FlowSlice";
+import { removeCredits } from "../../../../../redux/Slices/UserSlice";
 
 interface CardTemplateProps {
   id: TemplateId;
   template: Template;
   isFavorite: boolean;
   isSelected: boolean;
+  isMyTemplate: boolean;
 }
 
 const CardTemplate: React.FC<CardTemplateProps> = memo(
-  ({ template, isSelected, isFavorite, id }) => {
+  ({ template, isSelected, isFavorite, isMyTemplate, id }) => {
     const { name, image = ImageNotFound, niche, categ, price } = template;
 
-    const [inCart, setInCart] = useState(false);
+    // const [inCart, setInCart] = useState(false);
     // const { myTemplates } = useSelector(
     //   (state: RootStoreState) => state.templates
     // );
-    // const { template } = useSelector((state: RootStoreState) => state.flow);
+    const credits = useSelector((state: RootStoreState) => state.user.credits);
 
     const dispatch = useDispatch<AppDispatch>();
 
@@ -46,9 +48,20 @@ const CardTemplate: React.FC<CardTemplateProps> = memo(
       message.success(isFavorite ? "Select" : "Unselect");
     };
 
-    const handleAddToCart = () => {
-      setInCart((prev) => !prev);
-      message.success(inCart ? "Removed from cart" : "Added to cart");
+    // const handleAddToCart = () => {
+    //   setInCart((prev) => !prev);
+    //   message.success(inCart ? "Removed from cart" : "Added to cart");
+    // };
+    const handleBuy = (creditAmounts: number) => {
+      if (credits < creditAmounts) {
+        //not sufficient credits
+        message.error("Not enough credits to buy! Purchase some credits first");
+      } else {
+        dispatch(removeCredits(creditAmounts));
+        // dispatch(addMyTemplates(id));
+        // setInCart((prev) => !prev);
+        message.success("Template was bought successfully!");
+      }
     };
 
     return (
@@ -100,15 +113,18 @@ const CardTemplate: React.FC<CardTemplateProps> = memo(
               onClick={handleTemplateSelect}
               className={classes.cartButton}
             >
-              {isSelected ? "Select" : "Unselect"}
+              {isSelected ? "Setup" : "Un setup"}
             </Button>
-            <Button
-              type={inCart ? "primary" : "default"}
-              onClick={handleAddToCart}
-              className={classes.cartButton}
-            >
-              {inCart ? "Remove from Cart" : "Add to Cart"}
-            </Button>
+
+            {!isMyTemplate && (
+              <Button
+                type={isMyTemplate ? "primary" : "default"}
+                onClick={() => handleBuy(price)}
+                className={classes.cartButton}
+              >
+                Buy
+              </Button>
+            )}
           </div>
         </div>
       </Card>

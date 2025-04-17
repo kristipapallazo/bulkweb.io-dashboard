@@ -11,7 +11,9 @@ type LocalStorageItemKey =
   | "loginItems"
   | "credits"
   | "history"
-  | "websites";
+  | "websites"
+  | "favorites"
+  | "myTemplates";
 
 export const LOCALSTORAGE_ITEM_DICT: any = {
   login: { defaultVal: undefined },
@@ -19,6 +21,8 @@ export const LOCALSTORAGE_ITEM_DICT: any = {
   credits: { defaultVal: 0 },
   websites: { defaultVal: [], isJson: true },
   history: { defaultVal: {}, isJson: true },
+  favorites: { defaultVal: [], isJson: true },
+  myTemplates: { defaultVal: [], isJson: true },
 };
 
 function getLocalStorageItem(key: LocalStorageItemKey): any {

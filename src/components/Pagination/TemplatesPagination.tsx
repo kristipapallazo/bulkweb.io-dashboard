@@ -10,7 +10,7 @@ const TemplatesPagination: FC<PaginationProps> = (props) => {
 
   return (
     <Pagination
-      style={{ flex: 1 }}
+      // style={{ flex: 1 }}
       {...props}
       className={classes.pagination_cont}
       total={total}

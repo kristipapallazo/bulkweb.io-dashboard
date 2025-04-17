@@ -12,6 +12,10 @@ import {
   updateCredits,
   updateWebsites,
 } from "../../redux/Slices/UserSlice";
+import {
+  updateFavorites,
+  updateMyTemplates,
+} from "../../redux/Slices/TemplatesSlice";
 
 let initial = true;
 
@@ -27,11 +31,17 @@ const Dashboard = () => {
         console.log("loginItems :>> ", loginItems);
         const credits = getLocalStorageItem("credits");
         const websites = getLocalStorageItem("websites") || [];
+        const favorites = getLocalStorageItem("favorites") || [];
+        console.log("favorites xxx :>> ", favorites);
+        const myTemplates = getLocalStorageItem("myTemplates") || [];
 
         //update redux state
         if (login) dispatch(setUser(login === "undefined" ? undefined : login));
         dispatch(updateCredits(credits));
         dispatch(updateWebsites(websites as AllWebsites));
+
+        dispatch(updateFavorites(favorites as TemplateAllIds));
+        dispatch(updateMyTemplates(myTemplates as TemplateAllIds));
       };
       init();
       initial = false;
