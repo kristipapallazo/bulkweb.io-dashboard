@@ -4,7 +4,7 @@ import MainContentContainer from "../../components/Content/MainContentContainer/
 // import Footer from "../../components/Footer/Footer";
 // import { useState } from "react";
 import classes from "./DashboardPage.module.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getLocalStorageItem } from "../../utils/utils";
 import {
@@ -24,6 +24,7 @@ const Dashboard = () => {
         //update items from localStorage
         const login = getLocalStorageItem("login");
         const loginItems = getLocalStorageItem("loginItems") || [];
+        console.log("loginItems :>> ", loginItems);
         const credits = getLocalStorageItem("credits");
         const websites = getLocalStorageItem("websites") || [];
 

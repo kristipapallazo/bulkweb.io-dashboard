@@ -7,13 +7,11 @@ import {
 import { Typography, message } from "antd";
 import styles from "./PurchaseDomainPage.module.css";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { removeCredits } from "../../../../redux/Slices/UserSlice";
 import { MdWifiProtectedSetup } from "react-icons/md";
-import { RootStoreState } from "../../../../redux";
 import { setDomain } from "../../../../redux/Slices/FlowSlice";
 import { useNavigate } from "react-router";
-import { useTemplatePageContext } from "../../../../components/Layout/TemplatePageOutletLayout/TemplatePageOutletLayout";
 import {
   TEMPLATE_MODULES,
   useTemplatePageCtx,

@@ -3,7 +3,7 @@ import { Typography } from "antd";
 import styles from "./DomainPage.module.css";
 import DomainTab from "../../../components/Tabs/DomainTab/DomainTab";
 import { Outlet, useLocation, useNavigate } from "react-router";
-import DomainConatainer from "../../../components/Content/TemplateContentContainer/TemplateFilterContainer/DomainContainer/DomainConatainer";
+// import DomainConatainer from "../../../components/Content/TemplateContentContainer/TemplateFilterContainer/DomainContainer/DomainConatainer";
 
 const { Title } = Typography;
 
@@ -29,7 +29,7 @@ const DomainPage = () => {
       <Title level={3} className={styles.heading}>
         Domain Setup
       </Title>
-      <DomainConatainer style={{ marginBottom: "10px" }} />
+      {/* <DomainConatainer style={{ marginBottom: "10px" }} /> */}
 
       <DomainTab />
       <div className={styles.domain_page_outlet}>

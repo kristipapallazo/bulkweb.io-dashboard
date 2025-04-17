@@ -1,9 +1,7 @@
-import React, { Children, ReactNode, useCallback, useState } from "react";
+import React, { ReactNode, useCallback, useState } from "react";
 import { Modal, Radio, RadioChangeEvent, Button } from "antd";
 import { DollarOutlined } from "@ant-design/icons";
 import TranslatedInput from "../UI/AntD/Input/TranslatedInput";
-import { useSelector } from "react-redux";
-import { RootStoreState } from "../../redux";
 
 interface PaymentModalProps {
   open: boolean;
@@ -84,7 +82,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
     }
   }, [method]);
 
-  const handlePay = (method: PaymentMethod) => {
+  const handlePay = () => {
     onPay();
   };
 
@@ -102,7 +100,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
           key="pay"
           type="primary"
           icon={<DollarOutlined />}
-          onClick={() => handlePay(method)}
+          onClick={() => handlePay()}
         >
           Pay ${amount} with {method.charAt(0).toUpperCase() + method.slice(1)}
         </Button>,
